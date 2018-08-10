@@ -215,7 +215,7 @@ app.controller('register', function($scope, $http,$location,$state,$window) {
                //$window.alert("This username already exists");
                 var ele = document.getElementById("err")
                 ele.innerHTML ="* This username already exists";
-                ele.setAttribute("id","details");
+                ele.setAttribute("class","details");
             } else {
             
             console.log('success');
@@ -312,6 +312,23 @@ app.controller('displayCtrl',function($scope,$http,$location,$state,$rootScope,$
               
         //$scope.returns = true;
         //x.returns = true;
+
+        
+var date2 = new Date();
+var date1 = new Date(x.date);
+var timeDiff = Math.abs(date2.getTime() - date1.getTime());
+$scope.dayDifference = Math.ceil(timeDiff / (1000 * 3600 * 24));
+console.log($scope.dayDifference);
+                if(x.price > $scope.dayDifference) {
+        $scope.due =x.price - $scope.dayDifference;
+        x.due=$scope.due;
+                }
+                else 
+                    {
+                      $scope.due =0
+                      x.due=0 
+                    }
+        
         $scope.obj = x;
         $scope.obj['user']=$scope.user;
         $http.post('/returnBook',$scope.obj)
@@ -347,10 +364,7 @@ app.controller('catListCtrl', function($scope, $http,$location,$state,$statePara
     console.log('title:' + $scope.titles);
         console.log('author' + $scope.authors);
     
-    //console.log("inside catListCtrl");
-     //var user = $stateParams.user;
-    //console.log('inside catList_controller ' + user);
-        //$scope.user = user;
+    
     
     $scope.getSs = function() {
         //$scope.showMy = false;
@@ -455,10 +469,7 @@ app.controller('catListCtrl', function($scope, $http,$location,$state,$statePara
             title:tit,
             author:auth,
             price:price,
-            return:false,
-            due:1,
-            date:1,
-        }
+            }
         console.log($scope.obj);
          $http.post('/book',$scope.obj)
             .then(function(response){
@@ -492,10 +503,6 @@ app.controller('catListCtrl', function($scope, $http,$location,$state,$statePara
        
        console.log('inside CatlistCtrl' +$rootScope.flags);
         $rootScope.flags =0;
-        //var t = document.getElementById("titles");
-        //tit=t.innerHTML;
-        //var a = document.getElementById("authors");
-        //auth = a.innerHTML
         console.log('title:' + $scope.titles);
         console.log('author' + $scope.authors);
         $rootScope.date1 = new Date();
@@ -641,7 +648,7 @@ app.controller('ownermain',function($scope,$rootScope,$http,$location,$state,$st
 app.controller('orderDisplayCtrl',function($scope,$http,$location,$state,$rootScope,$compile) {
      $scope.user = $rootScope.user;
      $scope.owner = $rootScope.owner;
-     $scope.names = ["not received", "received", "received(bad)"];
+     
         $scope.object =
             {
                 name:$scope.owner
@@ -663,7 +670,7 @@ app.controller('orderDisplayCtrl',function($scope,$http,$location,$state,$rootSc
         x.returns = true;
                 
    //console.log("inside calc order" + x.price) ;             
-var date2 = new Date(2018,11,11);
+var date2 = new Date();
 var date1 = new Date(x.date);
 var timeDiff = Math.abs(date2.getTime() - date1.getTime());
 $scope.dayDifference = Math.ceil(timeDiff / (1000 * 3600 * 24));
@@ -699,8 +706,14 @@ console.log($scope.dayDifference);
                 console.log("no refund")
             }
         });
-    
 });
+    
+    
+       
+
+
+            
+
        
 
 
