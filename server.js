@@ -36,14 +36,14 @@ app.post('/uname',function(req,res) {
     
     fs.readFile(file, (err, data) => {
     if (err && err.code === "ENOENT") {
-        // But the file might not yet exist.  If so, just write the object and bail
+        
         return fs.writeFile(file, JSON.stringify([obj]), error => console.error);
     }
     else if (err) {
-        // Some other error
+        
         console.error(err);
     }    
-    // 2. Otherwise, get its JSON content
+    
     else {
         try {
             const fileData = JSON.parse(data);
@@ -190,20 +190,7 @@ app.post('/pay',function(req,res) {
     var obj = req.body;
     var title = req.body.title;
     var user = req.body.user;
-    console.log(req.body.title);
     var flag=0;
-    
-   /*var name = req.body.uname;
-    var pwd = req.body.pwd;
-    var fname = req.body.fname;
-    var dob = req.body.dob;
-    var address = req.body.address;
-    var city = req.body.city;
-    var phone = req.body.phone;
-    
-    var obj = {name : uname, password:pwd, firstName: fname, dob: dob, add:address, city:city, tele : phone};*/
-    
-    
     fs.readFile(file2, (err, data) => {
     if (err && err.code === "ENOENT") {
         // But the file might not yet exist.  If so, just write the object and bail
@@ -256,10 +243,6 @@ app.post('/pay',function(req,res) {
         }
     }
 });
-    
-   
-    
-    
 });
 
 app.post('/book',function(req,res) {
@@ -268,20 +251,8 @@ app.post('/book',function(req,res) {
     var obj = req.body;
     var title = req.body.title;
     var user = req.body.user;
-    console.log(req.body.title);
+    
     var flag=0;
-    
-   /*var name = req.body.uname;
-    var pwd = req.body.pwd;
-    var fname = req.body.fname;
-    var dob = req.body.dob;
-    var address = req.body.address;
-    var city = req.body.city;
-    var phone = req.body.phone;
-    
-    var obj = {name : uname, password:pwd, firstName: fname, dob: dob, add:address, city:city, tele : phone};*/
-    
-    
     fs.readFile(file2, (err, data) => {
     if (err && err.code === "ENOENT") {
         // But the file might not yet exist.  If so, just write the object and bail
@@ -307,37 +278,33 @@ app.post('/book',function(req,res) {
                 }
 
             // 3. Append the object you want
-            console.log('flag' + flag);
+            
             if(flag==0) {
             //fileData.push(obj);
-            var msg =
-            {
-                err:'success'
-            }
-                res.send(msg);    
+                 var msg =
+                  {
+                  err:'success'
+                   }
+                   res.send(msg);    
 
             //4. Write the file back out
             return fs.writeFile(file2, JSON.stringify(fileData), error => console.error);
-            
             }
              
             else {
-          var msg1 =
-            {
-                err:'failure'
-            }
-        res.send(msg1);
-    }
+                   var msg1 =
+                     {
+                       err:'failure'
+                      }
+                     res.send(msg1);
+             }
     
-        } catch(exception) {
+} 
+        catch(exception) {
             console.error(exception);
-        }
-    }
-});
-    
-   
-    
-    
+               }
+       }
+   });
 });
 
 app.post('/getPurchase',function(req,res) {
@@ -448,6 +415,7 @@ app.post('/returnBook',function(req,res) {
     var user=req.body.user;
     //var owner = req.body.owner;
     var title = req.body.title;
+    var due = req.body.due;
     console.log('inside returnBook ' + user);
     //console.log('inside returnBook ' + owner);
     console.log('inside returnBook ' + title);
@@ -466,7 +434,7 @@ app.post('/returnBook',function(req,res) {
                     for(var i =0; i < fileData.length;i++) {
                         
                         if(fileData[i].user===user && fileData[i].title===title) {
-                           
+                           fileData[i].due = due;
                            fileData[i].return = "true";
                             console.log( "updated status" + fileData[i].return);
                             //fs.writeFileSync(file2,JSON.stringify(fileData[i]))
@@ -474,8 +442,8 @@ app.post('/returnBook',function(req,res) {
                     }
                     fs.writeFile(file2, JSON.stringify(fileData), function (err) {
   if (err) return console.log(err);
-  console.log(JSON.stringify(file));
-  console.log('writing to ' + file3);
+  //console.log(JSON.stringify(file));
+  console.log('writing to ' + file2);
    });                 
                     
                     
@@ -516,12 +484,12 @@ app.post('/refund',function(req,res) {
                            fileData[i].due = due;
                             fileData[i].button = "returned";
                             console.log( "updated due" + fileData[i].due);
-                            //fs.writeFileSync(file2,JSON.stringify(fileData[i]))
+                            
                         }
                     }
                     fs.writeFile(file2, JSON.stringify(fileData), function (err) {
   if (err) return console.log(err);
-  console.log(JSON.stringify(file));
+  //console.log(JSON.stringify(file));
   console.log('writing to ' + file2);
    });                 
                     
