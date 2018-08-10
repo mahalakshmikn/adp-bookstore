@@ -1,0 +1,35 @@
+<html>
+    <head>
+        <style>
+            
+ input[type=text], input[type=password]  {
+  padding: 10px 32px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background-color: #ffb366;
+}
+
+input[type=text]:focus, input[type=password]:focus,input[type=date]:focus {
+  background-color: #ff9900;
+  outline: none;
+        </style>
+    </head>
+    <body>
+        <div id="containers">
+        <center>
+            <h3 class="details">Login Form</h3>
+        
+        <form name="mform" id ="myform1" ng-submit="login()">
+            <label class="details" for="uname"><b>Email Id</b></label>
+            <input type="text" name="uname" ng-model="formData.uname" placeholder="Email" required><br><br>
+            
+            <label class="details" for="pwd"><b>Password </b></label>
+            <input type="password" name ="pwd" ng-model="formData.pwd" placeholder="Password" required><br><br>
+            <input id="bookConfirm" type ="submit" value="Login">
+            <span><b>New user? </b></span><span><a ui-sref="signup" id="signup"> Signup </a></span>
+        </form>
+        </center> 
+        </div>
+    </body>
+</html>

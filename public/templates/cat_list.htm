@@ -1,0 +1,77 @@
+<html>
+    <head>
+        <style>
+             input[type=text], input[type=password], input[type=date] {
+  /*width: 100%;*/
+  padding: 10px 32px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: #ffb366;
+}
+
+input[type=text]:focus, input[type=password]:focus,input[type=date]:focus {
+  background-color: #ff9900;
+  outline: none;
+}
+        </style>
+    </head>
+    <body>
+<div class="col12">
+<div id="catTable" class="col333">
+<table id="cat_table" style="width:100%">
+  <tr>
+    <th>Categories</th>
+    </tr>
+  <tr>
+      <td id="cat_btn1"><input class="cat_btn"  type="button" ng-click="getSs()" value="Short Stories" ng-model="data"></td>
+  </tr>
+  <tr>
+    <td id="cat_btn1"><input class="cat_btn" type="button" ng-click="getCh()" value="Children Books" ng-model="data"></td>
+  </tr>
+  <tr>
+    <td><input class="cat_btn" type="button" ng-click="getBi()" value="Biography" ng-model="data"></td>
+  </tr>
+  <!--<tr>
+    <td><input class="cat_btn" type="button" ng-click="getSs()" value="History" ng-model="data"></td>
+  </tr>
+  <tr>
+    <td><input class="cat_btn" type="button" ng-click="getSs()" value="Horror" ng-model="data"></td>
+  </tr>
+  <tr>
+    <td><input class="cat_btn" type="button" ng-click="getSs()" value="Fiction" ng-model="data"></td>
+  </tr>    
+  <tr>
+    <td><input class="cat_btn" type="button" ng-click="getSs()" value="Romance" ng-model="data"></td>
+  </tr> 
+  <tr>
+    <td><input class="cat_btn" type="button" ng-click="getSs()" value="Philosophy" ng-model="data"></td>
+  </tr> !-->    
+</table>
+</div>
+<div  class="col9" id="cat">
+<div ng-hide ="payVar">   
+<div ng-hide="myVar" id="box" class="col3" ng-repeat="x in shortstory">
+          <img id="simage" src={{x.image}}>
+          <p id="title">{{x.title}}</p>
+          <p id ="author">{{x.author}}</p>
+          <!--<a ui-sref="catviews">Buy</a>!-->
+          <input id="readMore" type="button" value="Read More" ng-click="addToCart(x)" ng-model="myVar">
+        </div>
+<div ng-show="myVar" id="catview">
+    <img id="simages">
+    <p>Title: <span class="details" id="titles"  ng-model="titles"></span></p>
+    <p> Author: <span id ="authors" class="details"  ng-model="authors" ></span></p>
+    <p>Description: <span id ="description" class="details" ></span></p>
+    <p>Reference Number: <span id ="refNo" class="details" ></span></p>
+    <p>ISBN: <span id ="isbn" class="details" ></span></p>
+    <p>Number Of Pages: <span id ="pages" class="details" ></span></p><br><br>
+    <p>Price: <span id ="price" class="details" ></span></p><br><br>
+    <button id="bookConfirm" ng-value="booking" type="button"  ng-disabled=dsblBtn ng-click="makePayment()">Booking confirm</button>
+    
+</div>    
+</div>   
+</div>
+ </div>
+    </body>
+</html>

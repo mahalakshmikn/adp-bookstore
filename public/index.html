@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+    <head>
+        <!--<link href="css/site.css" rel="stylesheet">!-->
+       <link rel = "stylesheet" href="./css/style.css">
+        <link rel= "stylesheet" href ="./css/cat.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.8/angular-ui-router.min.js"></script>        
+<!--<script src = "./js/app.js"></script>!-->
+   
+    </head>
+    <body>
+        <div id="container">
+        <div class="col12">
+            <h1 id="main_title">We Love Books!</h1>
+        </div>
+        <div id="menu1" class="col12">
+            <ul id="list_menu1">
+                <li> <a ng-hide="linkVar" ui-sref="home">HOME</a></li>
+                <li> <a ui-sref="categories">CATEGORIES</a></li>
+                <li>  <a ui-sref="how">HOW IT WORKS</a></li>
+                <li> <a ui-sref="contact">CONTACT US</a></li>
+                <li><a ui-sref="about">ABOUT</a></li>
+                <li><a ui-sref="owner">OWNER</a></li>
+            </ul>
+        </div>
+            
+        
+        <div ui-view ="header"></div> 
+        <div ui-view="cat"></div>    
+        <div ui-view ="content"></div>    
+        <!--<div class="ng-view"></div>!-->
+            
+            <div id="footer" class="col12">
+                <ul id="list_footer">
+                    <li><a href="#!about">About</a></li>
+                    <li><a href="#!help">Help</a></li>
+                    <li><a href="#!privacy">Privacy Policy</a></li>
+                    <li><a href="#!contact">Contact</a></li>
+                </ul>
+            </div>
+           </div> 
+        <!--<script src = "js/app.js"></script>!-->
+        
+        
+            <script src="js/app.js"></script>
+            
+
+</body>
+</html>

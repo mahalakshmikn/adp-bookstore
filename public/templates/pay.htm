@@ -1,0 +1,59 @@
+<html>
+    <head>
+        <style>
+            input[type=text], input[type=password], input[type=date] {
+  /*width: 100%;*/
+  padding: 10px 32px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: #ffb366;
+}
+
+input[type=text]:focus, input[type=password]:focus,input[type=date]:focus {
+  background-color: #ff9900;
+  outline: none;
+}
+        </style>
+    </head>
+    <body>
+<div id="containers1">
+    <center><form  method="post">
+  <!--<span class="payment-errors"></span>!-->
+  <div id="payPortal">
+      <h1 class="details">Payment Portal</h1>
+      <div class="form-group">
+    <label>
+      <span class="details">Card Holder Name</span>
+      <input type="text" size="20" name="holder_name" placeholder="Name" required/>
+    </label>
+  </div>
+  <div class="form-group">
+    <label>
+      <span class="details">Card Number</span>
+      <input type="text" size="20" name="number" placeholder="Card Number" required />
+    </label>
+  </div>
+<div class="form-group">
+    <label>
+      <span class="details">CVC</span>
+      <input type="text" size="4" name="cvc" placeholder="CVC" required />
+    </label>
+  </div>
+
+  <div class="form-group">
+    <label>
+      <span class="details">Expiration (MM/YYYY)</span>
+      <input type="text" size="2" name="expMonth" placeholder="MM" ng-model="month" required />
+    </label>
+    <span> / </span>
+    <input type="text" size="4" name="expYear" placeholder="YYYY" ng-model="year"  required/>
+  </div>
+
+  <button id="bookConfirm" type="submit" ng-click="changeStatus()">Pay</button>
+  </div>
+</form>
+</center>
+</div>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<div class="col12">
+    
+    <table id="purchase">
+        <tr>
+            <th>Serial No.</th>
+            <th>User</th>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Price</th>
+            <th>Return status</th>
+            <th>Due Amount</th>
+            <th>Bought date</th>
+            <th>Received</th>
+            <th>Not received</th>
+            
+        </tr>
+        <tr ng-repeat="order in myorders">
+            <td>{{$index + 1}}</td>
+            <td>{{order.user}}</td>
+            <td>{{order.title}}</td>
+            <td>{{order.author}}</td>
+            <td>{{order.price}}</td>
+            <td>{{order.returns}}</td>
+            <td ng-model="due">{{order.due}}</td>;
+            <td>{{order.date}}</td>
+            <td><input type="button" id="readMore" value={{order.regood}} ng-disabled="rg" ng-click="calc(order)" ></td>
+            <!--<td><select id="readMore" ng-model="selectedName" ng-options="x for x in names" ng-change="calc(order)"></select></td>!-->
+            <td><input type="button" id="readMore" value={{order.rebad}} ng-disabled="rb" ng-click="norefund(order)"></td>
+        </tr>
+    </table>
+
+</div>

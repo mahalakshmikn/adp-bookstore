@@ -1,0 +1,28 @@
+<div class="col12">
+    
+    <table id="purchase">
+        <tr>
+            <th>Serial No.</th>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Price</th>
+            <th>Return status</th>
+            <th>Due Amount</th>
+            <th>Bought date</th>
+            <th>Return</th>
+        </tr>
+        <tr ng-repeat="user in categories">
+            <td>{{$index + 1}}</td>
+            <td>{{user.title}}</td>
+            <td>{{user.author}}</td>
+            <td>{{user.price}}</td>
+            <td ng-model="returns">{{user.returns}}</td>
+            <td ng-model="due">{{user.due}}</td>;
+            <td>{{user.date}}</td>
+            <td><input type="button" id="readMore" value={{user.button}} ng-click="returnBook(user)"></td>
+        </tr>
+    </table>
+<table id="purchase">
+    
+</table>
+</div>

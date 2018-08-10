@@ -1,0 +1,399 @@
+body
+            {
+                max-width:100%;
+                max-height:100%;
+                background-color:#ff9900
+            }
+
+#container
+{
+    float:left;
+        width:96%;
+        height:96%;
+        margin-left:2%;
+        margin-right:2%;
+        margin-bottom:2%;
+        margin-top:2%;
+        background-color:white;
+        border-radius:15px;
+}
+.col12 {
+        float:left;
+        width:96%;
+        padding-left:10px;
+        padding-right:10px;
+        margin-left:2%;
+        margin-right:2%;
+    }
+#title
+{
+    height:10%;
+}
+
+#menu1
+{
+    padding:0px;
+    margin-right:2%;
+    background-color:#ff9900;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+#list_menu1 
+{
+    list-style-type: none;
+        overflow: hidden;
+       height:96%;
+}
+
+#list_menu1 li
+{
+    float:left;
+    padding:0.5%;
+    border-right:1px solid white;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+#list_menu1  li a
+{
+    display: block;
+    color: black;
+    text-align: center;
+    padding: 2px 10px;
+    text-decoration: none;
+    font-size:12px;
+}
+#list_menu1  li a:active {
+    background-color:white;
+}
+
+#login
+{
+    height:10%;
+    margin-top:1%;
+}
+#ownerlogin
+{
+    height:10%;
+    margin-top:1%;
+}
+#login_a
+{
+    text-decoration:none;
+    color:black;
+}
+
+#signup
+{
+    text-decoration:none;
+    font-weight:bold;
+    color:navy;
+}
+#ownersignup
+{
+    text-decoration:none;
+    font-weight:bold;
+    color:navy;
+}
+
+#footer
+{
+    padding:0px;
+    margin-right:2%;
+    background-color:#ff9900;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    margin-bottom:1%;
+    margin-top:1%;
+    margin-right:2%;
+}
+
+#list_footer 
+{
+    list-style-type: none;
+    overflow: hidden;
+    height:96%;
+       
+}
+
+#list_footer li
+{
+    float:left;
+    padding:0.5%;
+    border-right:1px solid white;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+#list_footer  li a
+{
+    display: block;
+    color: black;
+    text-align: center;
+    padding: 2px 10px;
+    text-decoration: none;
+    font-size:12px;
+}
+
+#maincontent
+{
+    height:50%;
+}
+ .col3
+           {
+    float: left;
+    width: 21%;
+    height:300px;           
+    margin-left:2%;
+    margin-right:2%;
+    margin-top:1%;
+    margin-bottom:1%;           
+               
+}
+
+.col33
+           {
+    float: left;
+    width: 21%;
+    height:300px;           
+    margin-left:1%;
+    margin-right:1%;
+    margin-top:1%;
+    margin-bottom:1%;           
+               
+}
+hr
+{
+    margin-top:1%;
+    margin-bottom:1%;    
+}
+#logout
+{
+    text-decoration:none;
+    color: navy;
+    float:right;
+    margin-right:2%;
+    
+}
+#welcome
+{
+    text-transform:uppercase;
+    color:red;
+    font-size:13px;
+    font-weight:bold;
+}
+#textwelcome
+{
+    font-size:14px;
+}
+#cat
+{
+    float:left;
+    border:2px solid #ff9900;
+    border-top-width:5px;
+    border-radius:5px;
+    
+}
+#catTable {
+    float:left;
+}
+
+.col6{
+        float:left;
+        width:46%;
+        
+        padding-left:10px;
+        padding-right:10px;
+        margin-left:2%;
+        margin-right:2%;
+        margin-bottom:10px;  
+        
+    }
+#cat table,th,td
+{
+    border:1px solid black;
+    border-collapse:collapse;
+}
+#cat_link
+{
+    text-decoration:none;
+    font-weight:bold;
+    color:gray;
+}
+#simage
+            {
+                width:100%;
+                height:100px;
+                margin-left:0px;
+                margin-right:0px;
+                padding-left:0px;
+                padding-right:0px;
+            }
+            
+            #title
+            {
+                text-align:center;
+                font-size:15px;
+                color:forestgreen;
+            }
+            
+            #author
+            {
+                text-align:center;
+                font-size:15px;
+                font-style:italic;
+                color: red;
+            }
+
+  .col333
+           {
+    float: left;
+    width: 21%;
+    height:50px;    
+    margin-left:2%;
+    margin-right:2%;
+    margin-bottom:1%;
+    margin-top:1%;    
+        
+    }
+.col9{
+        float:left;
+        width:71%;
+        height:900px;
+        margin-left:25%;
+        margin-right:2%;
+        margin-bottom:10px;
+        margin-top:-50px; 
+        padding:0px;
+        
+        
+    }
+
+#simages
+            {
+                width:21%;
+                height:100px;
+                margin-left:0px;
+                margin-right:0px;
+                padding-left:0px;
+                padding-right:0px;
+            }
+#catview p
+{
+    color:#ff9900;
+    margin-left:10px;
+    
+}
+table,tr,th,td
+{
+    border:1px solid #ff5050;
+    border-collapse:collapse;
+}
+#paymentportal {
+    margin-top:50px;
+}
+#readMore {
+    padding:5px 10px;
+    margin-left:30px;
+    background-color:#ff9900;
+    border:1px solid #ff9900;
+    border-radius:5px;
+
+}
+
+.cat_btn {
+    padding-left:5px 70px;
+    font-size:14px;
+    background-color:white;
+    border-style:none;
+    font-weight:bold;
+    color:gray;
+}
+
+
+.cat_btn:focus {
+    background-color:#ff9900;
+}
+#bookConfirm {
+    padding:14px 40px;
+    margin-left:10px;
+    background-color:#ff9900;
+    border:1px solid #ff9900;
+    font-size: :14px;
+    
+}
+#pay_btn {
+    padding:16px 32px;
+    margin-left:40px;
+    background-color:#0099ff;
+    border:1px solid #0099ff;
+    border-radius:5px;
+    
+}
+.details {
+    color:#cc0066;
+}
+#titles {
+    font-style:italic;
+    color:#cc0066;
+}
+#authors {
+    font-weight:bold;
+    color:#cc0066;
+}
+#decription {
+    font-style:normal;
+}
+#acc_btn {
+    padding:14px 40px;
+    margin-left:10px;
+    background-color:orangered;
+    border:1px solid #ff9900;
+    font-size: :14px;
+    
+}
+#purchase {
+    margin:0px;
+    padding:0px;
+}
+#purchase tr:nth-child(even) {
+    background-color:#ffc266;
+    
+    
+}
+@font-face {
+   font-family: myFirstFont;
+   src: url('myfont.ttf');
+}
+#main_title {
+    font-family: myFirstFont;
+    color:#993333;
+}
+#address {
+    
+    margin-left:20px;
+}
+#city {
+    margin-left:35px;
+}
+#phone {
+    margin-left:25px;
+}
+#containers {
+margin-top:150px;; 
+ margin-left:400px;
+margin-right:400px;
+margin-bottom:150px;                
+  padding: 16px;
+ border:2px solid #ff9900;
+border-radius:5px;
+background-color:#ffe6cc;
+}
+#containers1 {
+    margin-top:150px;; 
+ margin-left:400px;
+margin-right:400px;
+margin-bottom:150px;                
+  padding: 16px;
+}

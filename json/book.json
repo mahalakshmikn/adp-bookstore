@@ -1,0 +1,107 @@
+{
+    "anthology":{
+        "book1":{
+            "image":"images/shortstories/a_ruskin.jpg",
+            "title" : "A Gathering of Friends: My Favourite Stories",
+            "author" : "Ruskin Bond",
+            "description":"His tales of India are fresh yet age-old; the scents, sights and languor of the Indian scene have rarely been captured with such ease and authority…-National Herald.Ruskin Bond has a magnificently simple and immensely moving style, compassion and a love and reverence for life-Indian Express.A writer of great gifts.- New Statesman One of the country's foremost writers.- Sunday ChronicleThe country's best-loved English-language storyteller...seldom disappoints his readers... If you want the...pleasures of a good story, you can't go wrong with Bond.'- Live MintOne of India's best-loved storytellers.'- The HinduThe twenty-one stories in the book are the greatest pieces of fiction written by Ruskin Bond. Chosen by the author himself, from a body of work built over fifty years (starting with his award-winning first novel, The Room on the Roof, and ending with Tales of Fosterganj) this collection includes well-known masterpieces like 'The Night Train at Deoli', 'The Woman on Platform No 8', 'Rusty Plays Holi' (from The Room on the Roof), 'Angry River', 'The Blue Umbrella', 'The Eyes Have It', 'Most Beautiful', 'Panther's Moon', as well as newer stories like 'An Evening at the Savoy with H.H.' (from Maharani) and 'Dinner with Foster' (from Tales of Fosterganj). Taken together, the stories in A Gathering of Friends show why Ruskin Bond has long been regarded as one of the pillars of Indian literature. This is a book that will delight his legions of fans as well as those lucky few who are new to his fiction",
+            "refNo":"5944",
+            "ISBN": "9789383064793",
+            "numOfPages":"244",
+             "button": "BUY"   
+        },
+        "book2":{
+            "image":"images/shortstories/b_indianstories.jpg",
+            "title" : "Best Loved Indian Stories of the Century , Vol 1",
+            "author" : "Various Authors",
+            "description":"Best Loved Indian Stories brings together tales from different parts of the country that have enthralled readers of all ages. This volume, the first of two, represents the best English stories written by Indians in the twentieth century. In these twenty stories you will meet unforgettable characters like the inimitable Muni with his two goats in R.K. Narayans classic A Horse and Two Goats', the pious Vishnu in Khushwant Singh's 'The Mark of Vishnu, the innocent basket-seller with the enchanting eyes in Ruskin Bond's unforgettable 'Night Train at Deoli', the dying grandmother with her eccentric demands in Githa Hariharan's Remains of the Feast and many other men and women who have touched our lives over the generations. The authors included in this volume are: Anjana Appachana, Anita Desai, Attia Hosain, Bharati Mukherjee, Githa Hariharan, K.A. Abbas, Keki N. Daruwalla, Khushwant Singh, Manjula Padmanabhan, Manoj Das, Manohar Malgonkar, Mulk Raj Anand, Nayantara Sahgal, Nergis Dalai, Padma Hejrnadi, R.K. Narayan, Raja Rao,Ruskin Bond, Santha Rarna Rau, Shashi Deshpande ",
+             "refNo":"5045",
+            "ISBN": "0140285083",
+            "numOfPages":"242",
+             "button": "BUY"   
+        },
+        "book3":{
+            "image":"images/shortstories/c_crime.jpg",
+            "title" : " Crime From the Mind of a Woman ",
+            "author" : "Elizabeth George",
+            "description":"Why exists this fascination with crime and why, above all, exists this fascination with crime on the part of female writers? Bestselling novelist Elizabeth George poses this question in her introduction, answers it with her customary elegance and illustrates it with a rich and varied collection of international writers, some household names; others buried treasures waiting to be rediscovered. The stories have locations as diverse as Africa and the Caribbean, London and Los Angeles, San Francisco and Switzerland. Some are modern; some period. Some feature well-known sleuths - Sherlock Holmes and Dr Watson, Jemina Shore - or notorious villains - Jack the Ripper; others are tales of 'ordinary' people caught up in out of the ordinary events. All of them share in common a desire to explore mankind in a moment on the edge. The edge equates to the crime committed. How the characters deal with the edge is the story. ",
+             "refNo":"2681",
+            "ISBN": "9780340819708",
+            "numOfPages":"548",
+             "button": "BUY"   
+        },
+        "book4":{
+            "image":"images/shortstories/d_dubliners.jpg",
+            "title" : "Dubliners",
+            "author" : "James Joyce",
+            "description":"Joyce’s first major work, written when he was only twenty-five, brought his city to the world for the first time. His stories are rooted in the rich detail of Dublin life, portraying ordinary, often defeated lives with unflinching realism. He writes of social decline, sexual desire and exploitation, corruption and personal failure, yet creates a brilliantly compelling, unique vision of the world and of human experience.",
+            "refNo":"2521",
+            "ISBN": "9780486268705",
+            "numOfPages":"152",
+             "button": "BUY"   
+        },
+        "book5":{
+            "image":"images/shortstories/e_efeather.jpg",
+            "title" : "Electric Feather",
+            "author" : " Ruchir Joshi",
+            "description":"Abeer Hoque teaches us a lexicon of self-adoration. Meenakshi Reddy Madhavan gets inside the skin of a man.Samit Basu uncouples a Bengali wedding night.Sheba Karim takes us into an open book in a closed cupboard.Paromit Vhora teaches a Star why its worth traveling through time.Jeet Thayil gets us a ticket to forbidden train of thought.Ruchir Joshi taks us down to the basic memory.Kamila Shamsie quietly changes the meaning of the sun.Rana Dasgupta take the sun into water.Sonia Jabbar examine a lawyers briefNiven Govinden makes a cat do the hard work.Parvati Sharma warms up a dog.",
+             "refNo":"2131",
+            "ISBN": "9788189975968",
+            "numOfPages":"204",
+             "button": "BUY"   
+        },
+        "book6":{
+            "image":"images/shortstories/f_indianmasters.jpg",
+            "title" : "Five Indian Masters",
+            "author" : "Raja Rao",
+            "description":"This book is a compilation of classic short stories by five great Indian writers – Raja Rao, Rabindranath Tagore, Premchand, Dr. Mulk Raj Anand and Khushwant Singh. Though not necessarily representative of the authors’ complete works, the stories have been carefully chosen to showcase their versatility and skill as storytellers. The collection covers an extraordinary range of themes, styles and settings, allowing the reader to get a glimpse of another world gone by. Yet, these stories seem timeless, and the characters in them show the same foibles, fears and hopes as people in the brave new world of the 21st century.",
+             "refNo":"2085",
+            "ISBN": "817992217",
+            "numOfPages":"284",
+             "button": "BUY"   
+        },
+        "book7":{
+            "image":"images/shortstories/g_shortstories.jpg",
+            "title" : "Great Indian Hunting Stories",
+            "author" : "Stephen Alter",
+            "description":"This selection includes some of the best writings in this genre. From George Orwell's magnificient essay on the shooting of an elephant in Burma to Jim Corbett's meticulously observed tales of tiger shooting in the forests of Uttar Pradesh, these stories draw the reader into the high excitement of big-game hunting.Others like Rudyard Kipling, H.H. 'Saki' Munro, and a young army officer, Samuel Baker, who shoots a charging buffalo - provide a touch of humour to an otherwise dangerous and often tragic sport.Today when hunting is increasingly being banned or severely restricted, (with good reason, it might be added) this book should be read, as Stephen Alter writes in his introduction, for its good old-fashioned story-telling and as a good form of Indian literature.",
+             "refNo":"2124",
+            "ISBN": "014010786X",
+            "numOfPages":"269",
+             "button": "BUY"   
+        },
+        "book8":{
+            "image":"images/shortstories/h_agatha.jpg",
+            "title" : "Hercule Poirot, The Complete Short Stories",
+            "author" : "Agatha Christie",
+            "description":"At last – all the Poirot short stories in a single volume ‘My name is Hercule Poirot and I am probably the greatest detective in the world.’The dapper, moustache-twirling little Belgian with the egg-shaped head, curious mannerisms and inordinate respect for his own ‘little grey cells’ has solved some of the most puzzling crimes of the century. Appearing in Agatha Christie’s very first novel in 1920 and her very last in 1975, Hercule Poirot became the most celebrated detective since Sherlock Holmes, appearing in 33 novels, a play, and these 51 short stories.Arranged in their original publication order, these short stories provide a feast for hardened Agatha Christie addicts as well as those who have grown to love the detective through his many film and television appearances.",
+             "refNo":"2125",
+            "ISBN": "014010787X",
+            "numOfPages":"270",
+             "button": "BUY"   
+        },
+        "book9":{
+            "image":"images/shortstories/i_peter.jpg",
+            "title" : "In a Dry Season/Dry Bones That Dream",
+            "author" : "Peter Robinson",
+            "description":"In a Dry Season : During a blistering summer, drought has depleted Thornfield Reservoir, uncovering the remains of a small village called Hobb's End, hidden from view for over 40 years. A young boy finds a human skeleton, and DCI Alan Banks sets out to uncover the murky past.Dry Bones that Dream: It was 2.47 a.m. when Chief Inspector Alan Banks arrived at the barn and saw the body of Keith Rothwell for the first time. Only hours earlier two masked men had walked the mild-mannered accountant out of his farmhouse and clinically blasted him with a shotgun. Clearly this is a professional hit - but Keith was hardly the sort of person to make deadly enemies. Or was he? For the police investigation soon raises more questions than answers. And who, exactly, is Robert Calvert? The more Banks scratches the surface, the more he wonders what lies beneath the veneer of the apparently happy Rothwell family. And when his old sparring partner Detective Superintendent Richard Burgess arrives from Scotland Yard, the case take yet another unexpected twist .",
+             "refNo":"2626",
+            "ISBN": "9780330432658",
+            "numOfPages":"351",
+             "button": "BUY"   
+        },
+        "book10":{
+            "image":"images/shortstories/j_badluck.jpg",
+            "title" : "Just Plain Bad Luck",
+            "author" : " Various Authors",
+            "description":"JUST PLAIN BAD LUCK is a compilation of 25 MIND NUMBING SHORT STORIES contributed by Vibha batra, Subhojit Sanyal, Taniya Sachdeva, Uttara Talapatra and Rajee H Singhania.Really short stories so much so that some finish in just 3 pages and rarely anyone extending beyond 7 pages.  These are like what we hear over a campfire. Really short & crisp, episodic, full of action and sudden twist are characteristic of them. Most of the stories as expected deal with ghost, but a few better one have the live minefield of mind as its playground. The truth of living with fear, revenge, faith, darkness, dreams, conscious volatility and pressure capped emotions. Trapped they erupt at the least provocation or support. I like things that way. Some of these are nuggets.  Will it be your bad luck if you pick JUST PLAIN BAD LUCK? Read on to find out.",
+             "refNo":"747",
+            "ISBN": "9788172343439",
+            "numOfPages":"152",
+             "button": "BUY"   
+        }
+    }
+       
+}
+
+    

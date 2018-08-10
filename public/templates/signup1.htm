@@ -1,0 +1,60 @@
+<html>
+    <head>
+        <style>
+            * {box-sizing: border-box}
+            
+            input[type=text], input[type=password], input[type=date] {
+  /*width: 100%;*/
+  padding: 10px 32px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: #ffb366;
+}
+
+input[type=text]:focus, input[type=password]:focus,input[type=date]:focus {
+  background-color: #ff9900;
+  outline: none;
+}
+        </style>
+    </head>
+    <body>
+        <center>
+            
+        <div id="containers">
+      <h1 class="details">Sign Up</h1>
+       <p class="details">Please fill in this form to create an account.</p>
+        <form name="mform" id ="myform1" ng-submit="save()">
+            <label class="details" for="uname"><b>Email ID </b></label>
+            <input type="text" name="uname" ng-model="formData.uname" placeholder="Email" required><br><br>
+            <p id="err"></p>
+            <label class="details" for="pwd"><b>Password </b></label>
+            <input type="password" name ="pwd" ng-model="formData.pwd" placeholder="Password" required><br><br>
+            
+            <label class="details" for ="fname"><b>First Name</b>
+            </label><input type="text" name ="fname" ng-model="formData.fname" placeholder="First Name" required><br><br>
+            
+            <label class="details" for="dob"><b>Birth Date</b></label>
+            <input type="date" name="dob" ng-model="formData.dob" required><br><br>
+            
+            <label class="details" for="address"><b>Address</b></label>
+            <input id="address" type="text" ng-model="formData.address" placeholder="Address" required><br><br>
+            
+            <label class="details" for="city"><b>City</b></label>
+            <input id="city" type="text" ng-model="formData.city" placeholder="City" required><br><br>
+            
+            <label class="details" for="phone"><b>Phone</b></label>
+            <input id="phone" type="text" ng-model="formData.phone" placeholder="Phone" required><br><br>
+            
+            <input class="details" type="checkbox" required>I accept the Terms & Conditions<br><br>
+            <input id="bookConfirm" type ="submit" value="REGISTER">
+        </form>
+        </div>
+            
+            
+    
+            
+            
+        </center>  
+    </body>
+</html>
