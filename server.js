@@ -550,6 +550,90 @@ fs.readFile(file4, (err, data) => {
     res.send();
 });
 
+app.post('/norefund',function(req,res) {
+    console.log(req.body);
+    var user=req.body.user;
+    var owner = req.body.owner;
+    var title = req.body.title;
+    var due = req.body.due;
+    console.log('inside norefund ' + user);
+    //console.log('inside returnBook ' + owner);
+    console.log('inside norefund ' + title);
+    var arr=[];
+    var obj={};
+    var file= require(file2);
+   
+    fs.readFile(file2,(err,data) => {
+        if(err) {
+            console.error(err)
+        }
+        else
+            {
+                try {
+                    var fileData = JSON.parse(data);
+                    fileData = fileData.filter(function(x) { return x !== null });
+                    for(var i =0; i < fileData.length;i++) {
+                        
+                        if(fileData[i].user===user && fileData[i].title===title && fileData[i].owner===owner && fileData[i].return ==="true") {
+                           
+                           fileData[i].due = 0;
+                            fileData[i].button = "returned";
+                            fileData[i].refund ="refund cancelled";
+                            console.log( "updated due" + fileData[i].due);
+                            var newobj =
+                                {
+                                    user : fileData[i].user,
+                                    owner: fileData[i].owner,
+                                    title: fileData[i].title,
+                                    author: fileData[i].author,
+                                    price: fileData[i].price,
+                                    date:fileData[i].date,
+                                    due: fileData[i].due,
+                                    return: fileData[i].return,
+                                    refund: fileData[i].refund
+                                }
+                            delete fileData[i];
+                            fs.writeFile(file2, JSON.stringify(fileData), function (err) {
+  if (err) return console.log(err);
+  //console.log(JSON.stringify(file));
+  console.log('writing to ' + file2);
+   });
+                            
+                        }
+                    }
+                   
+                    
+fs.readFile(file4, (err, data) => {
+    if (err && err.code === "ENOENT") {
+        
+        return fs.writeFile(file4, JSON.stringify([newobj]), error => console.error);
+    }
+    else if (err) {
+        
+        console.error(err);
+    }    
+     else {
+        try {
+            const fileData1 = JSON.parse(data);
+            fileData1.push(newobj);
+              return fs.writeFile(file4, JSON.stringify(fileData1), error => console.error)
+            }
+         catch(exception) {
+                    console.log(exception);
+                }
+        }      
+                    
+                });
+                
+            }
+                catch(exception) {
+                    console.log(exception);
+                }
+            }
+    });
+    res.send();
+});
+
 
 
 app.post('/owneruname',function(req,res) {
