@@ -1,0 +1,28 @@
+<div class="col12">
+    
+    <table id="purchase">
+        <tr>
+            <th>Serial No.</th>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Price</th>
+            <th>Return status</th>
+            <th>Due Amount</th>
+            <th>Bought date</th>
+            <th>Refund Status</th>
+        </tr>
+        <tr ng-repeat="user in history">
+            <td>{{$index + 1}}</td>
+            <td>{{user.title}}</td>
+            <td>{{user.author}}</td>
+            <td>{{user.price}}</td>
+            <td ng-model="return">{{user.return}}</td>
+            <td ng-model="due">{{user.due}}</td>
+            <td>{{user.date}}</td>
+            <td ng-model="refund">{{user.refund}}</td>
+        </tr>
+    </table>
+<table id="purchase">
+    
+</table>
+</div>
