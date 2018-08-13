@@ -1,4 +1,4 @@
-<div class="col12">
+<div class="col12" id="account">
     
     <table id="purchase">
         <tr>
@@ -10,6 +10,7 @@
             <th>Due Amount</th>
             <th>Bought date</th>
             <th>Return</th>
+            <th>Refund Status</th>
         </tr>
         <tr ng-repeat="user in categories">
             <td>{{$index + 1}}</td>
@@ -17,9 +18,10 @@
             <td>{{user.author}}</td>
             <td>{{user.price}}</td>
             <td ng-model="returns">{{user.returns}}</td>
-            <td ng-model="due">{{user.due}}</td>;
+            <td ng-model="due">{{user.due}}</td>
             <td>{{user.date}}</td>
             <td><input type="button" id="readMore" value={{user.button}} ng-click="returnBook(user)"></td>
+            <td ng-model="refund">{{user.refund}}</td>
         </tr>
     </table>
 <table id="purchase">
