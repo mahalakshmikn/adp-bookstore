@@ -170,10 +170,11 @@ hr
 }
 #logout
 {
-    text-decoration:none;
-    color: navy;
-    float:right;
-    margin-right:2%;
+    margin-right:20px;
+    margin-top:-25px;
+    background-color:#ff9900;
+    border:1px solid #ff9900;
+    
     
 }
 #welcome
@@ -299,7 +300,6 @@ table,tr,th,td
     background-color:#ff9900;
     border:1px solid #ff9900;
     border-radius:5px;
-
 }
 
 .cat_btn {
@@ -353,6 +353,15 @@ table,tr,th,td
     font-size: :14px;
     
 }
+
+#his_btn {
+    padding:14px 40px;
+    margin-left:10px;
+    background-color:orange;
+    border:1px solid #ff9900;
+    font-size: :14px;
+    
+}
 #purchase {
     margin:0px;
     padding:0px;
@@ -380,8 +389,20 @@ table,tr,th,td
 #phone {
     margin-left:25px;
 }
+#cardname {
+    margin-left:40px;
+}
+#cardno {
+    margin-left:65px;
+}
+#cvc {
+    margin-left:30px;
+}
+#cvctext {
+    
+}
 #containers {
-margin-top:150px;; 
+margin-top:150px;
  margin-left:400px;
 margin-right:400px;
 margin-bottom:150px;                
@@ -389,6 +410,9 @@ margin-bottom:150px;
  border:2px solid #ff9900;
 border-radius:5px;
 background-color:#ffe6cc;
+}
+#account {
+    height:600px;
 }
 #containers1 {
     margin-top:150px;; 
