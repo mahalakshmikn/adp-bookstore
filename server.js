@@ -10,6 +10,7 @@ var file11 ='./json/newbook_children.json';
 var file111 ='./json/newbook_biography.json';
 var file2 ='./json/newpurchase.json';
 var file3 = './json/ownerdata.json';
+var file4 = './json/history.json';
 app.use(express.static(__dirname + '/public'));
 
 app.use(bodyParser.urlencoded({'extended':'true'}));            // parse application/x-www-form-urlencoded
@@ -203,7 +204,8 @@ app.post('/pay',function(req,res) {
     // 2. Otherwise, get its JSON content
     else {
         try {
-            const fileData = JSON.parse(data);
+            var fileData = JSON.parse(data);
+            fileData = fileData.filter(function(x) { return x !== null });
             for(var i=0;i< fileData.length; i++)
                 {
                     
@@ -265,7 +267,8 @@ app.post('/book',function(req,res) {
     // 2. Otherwise, get its JSON content
     else {
         try {
-            const fileData = JSON.parse(data);
+            var fileData = JSON.parse(data);
+            fileData = fileData.filter(function(x) { return x !== null });
             for(var i=0;i< fileData.length; i++)
                 {
                     
@@ -320,7 +323,8 @@ app.post('/getPurchase',function(req,res) {
         else
             {
                 try {
-                    const fileData = JSON.parse(data);
+                    var fileData = JSON.parse(data);
+                    fileData = fileData.filter(function(x) { return x !== null });
                     for(var i =0; i < fileData.length;i++) {
                         if(fileData[i].user===user) {
                             count++;
@@ -335,7 +339,8 @@ app.post('/getPurchase',function(req,res) {
                                 date:fileData[i].date,
                                 button:fileData[i].button,
                                 regood: fileData[i].regood,
-                                rebad: fileData[i].rebad   
+                                rebad: fileData[i].rebad,
+                                refund:fileData[i].refund
                                     
                             }
                             
@@ -344,6 +349,7 @@ app.post('/getPurchase',function(req,res) {
                     }
                     
                     console.log(arr);
+                    arr = arr.filter(function(x) { return x !== null });
                     const arrayData = JSON.stringify(arr);
                     res.send(arrayData);
                     
@@ -374,7 +380,8 @@ app.post('/getOrders',function(req,res) {
         else
             {
                 try {
-                    const fileData = JSON.parse(data);
+                    var fileData = JSON.parse(data);
+                    fileData = fileData.filter(function(x) { return x !== null });
                     for(var i =0; i < fileData.length;i++) {
                         if(fileData[i].owner===user) {
                             count++;
@@ -390,14 +397,16 @@ app.post('/getOrders',function(req,res) {
                                 date:fileData[i].date,
                                 button:fileData[i].button, 
                                 regood: fileData[i].regood,
-                                rebad: fileData[i].rebad 
+                                rebad: fileData[i].rebad,
+                                refund: fileData[i].refund
                             }
                             
                             arr.push(obj);
                         }
                     }
-                    
+                    arr = arr.filter(function(x) { return x !== null });
                     console.log(arr);
+                    
                     const arrayData = JSON.stringify(arr);
                     res.send(arrayData);
                     
@@ -430,12 +439,14 @@ app.post('/returnBook',function(req,res) {
         else
             {
                 try {
-                    const fileData = JSON.parse(data);
+                    var fileData = JSON.parse(data);
+                    fileData = fileData.filter(function(x) { return x !== null });
                     for(var i =0; i < fileData.length;i++) {
                         
                         if(fileData[i].user===user && fileData[i].title===title) {
                            fileData[i].due = due;
                            fileData[i].return = "true";
+                            fileData[i].refund ="refund pending";
                             console.log( "updated status" + fileData[i].return);
                             //fs.writeFileSync(file2,JSON.stringify(fileData[i]))
                         }
@@ -444,10 +455,9 @@ app.post('/returnBook',function(req,res) {
   if (err) return console.log(err);
   //console.log(JSON.stringify(file));
   console.log('writing to ' + file2);
-   });                 
-                    
-                    
-                }
+   }); 
+             
+}
                 catch(exception) {
                     console.log(exception);
                 }
@@ -476,25 +486,62 @@ app.post('/refund',function(req,res) {
         else
             {
                 try {
-                    const fileData = JSON.parse(data);
+                    var fileData = JSON.parse(data);
+                    fileData = fileData.filter(function(x) { return x !== null });
                     for(var i =0; i < fileData.length;i++) {
                         
-                        if(fileData[i].user===user && fileData[i].title===title && fileData[i].owner===owner) {
+                        if(fileData[i].user===user && fileData[i].title===title && fileData[i].owner===owner && fileData[i].return ==="true") {
                            
                            fileData[i].due = due;
                             fileData[i].button = "returned";
+                            fileData[i].refund ="refunded";
                             console.log( "updated due" + fileData[i].due);
-                            
-                        }
-                    }
-                    fs.writeFile(file2, JSON.stringify(fileData), function (err) {
+                            var newobj =
+                                {
+                                    user : fileData[i].user,
+                                    owner: fileData[i].owner,
+                                    title: fileData[i].title,
+                                    author: fileData[i].author,
+                                    price: fileData[i].price,
+                                    date:fileData[i].date,
+                                    due: fileData[i].due,
+                                    return: fileData[i].return,
+                                    refund: fileData[i].refund
+                                }
+                            delete fileData[i];
+                            fs.writeFile(file2, JSON.stringify(fileData), function (err) {
   if (err) return console.log(err);
   //console.log(JSON.stringify(file));
   console.log('writing to ' + file2);
-   });                 
+   });
+                            
+                        }
+                    }
+                   
                     
-                    
+fs.readFile(file4, (err, data) => {
+    if (err && err.code === "ENOENT") {
+        
+        return fs.writeFile(file4, JSON.stringify([newobj]), error => console.error);
+    }
+    else if (err) {
+        
+        console.error(err);
+    }    
+     else {
+        try {
+            const fileData1 = JSON.parse(data);
+            fileData1.push(newobj);
+              return fs.writeFile(file4, JSON.stringify(fileData1), error => console.error)
+            }
+         catch(exception) {
+                    console.log(exception);
                 }
+        }      
+                    
+                });
+                
+            }
                 catch(exception) {
                     console.log(exception);
                 }
@@ -598,8 +645,105 @@ app.post('/ownersignin',function(req,res) {
             }
     });
     
-    
 });
+
+app.post('/getHistory',function(req,res) {
+    var user=req.body.name;
+    console.log('inside gethistory ' + user);
+    var arr=[];
+    var obj={};
+    var count=0;
+    fs.readFile(file4,(err,data) => {
+        if(err) {
+            console.error(err)
+        }
+        else
+            {
+                try {
+                    const fileData = JSON.parse(data);
+                    for(var i =0; i < fileData.length;i++) {
+                        if(fileData[i].owner===user) { 
+                            
+                            count++;
+                            var obj =
+                                {
+                                serial:count,
+                                user:fileData[i].user,
+                                title:fileData[i].title,
+                                author:fileData[i].author,
+                                price:fileData[i].price,
+                                return:fileData[i].return,
+                                due:fileData[i].due,
+                                date:fileData[i].date,
+                                refund:fileData[i].refund
+                                }
+                            
+                            
+                            arr.push(obj);
+                        }
+                    }
+                    
+                    console.log(arr);
+                    const arrayData = JSON.stringify(arr);
+                    res.send(arrayData);
+                    
+                    
+                }
+                catch(exception) {
+                    console.log(exception);
+                }
+            }
+    });
+});
+app.post('/getuserHistory',function(req,res) {
+    var user=req.body.name;
+    console.log('inside gethistory ' + user);
+    var arr=[];
+    var obj={};
+    var count=0;
+    fs.readFile(file4,(err,data) => {
+        if(err) {
+            console.error(err)
+        }
+        else
+            {
+                try {
+                    const fileData = JSON.parse(data);
+                    for(var i =0; i < fileData.length;i++) {
+                        if(fileData[i].user===user) { 
+                            
+                            count++;
+                            var obj =
+                                {
+                                serial:count,
+                                user:fileData[i].user,
+                                title:fileData[i].title,
+                                author:fileData[i].author,
+                                price:fileData[i].price,
+                                return:fileData[i].return,
+                                due:fileData[i].due,
+                                date:fileData[i].date,
+                                refund:fileData[i].refund
+                                }
+                            
+                            
+                            arr.push(obj);
+                        }
+                    }
+                    
+                    console.log(arr);
+                    const arrayData = JSON.stringify(arr);
+                    res.send(arrayData);
+                    
+                    
+                }
+                catch(exception) {
+                    console.log(exception);
+                }
+            }
+    });
+});
+
 
 
 
