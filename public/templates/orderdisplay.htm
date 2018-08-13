@@ -21,11 +21,10 @@
             <td>{{order.author}}</td>
             <td>{{order.price}}</td>
             <td>{{order.returns}}</td>
-            <td ng-model="due">{{order.due}}</td>;
+            <td ng-model="due">{{order.due}}</td>
             <td>{{order.date}}</td>
             <td><input type="button" id="readMore" value={{order.regood}} ng-disabled="rg" ng-click="calc(order)" ></td>
-            <!--<td><select id="readMore" ng-model="selectedName" ng-options="x for x in names" ng-change="calc(order)"></select></td>!-->
-            <td><input type="button" id="readMore" value={{order.rebad}} ng-disabled="rb" ng-click="norefund(order)"></td>
+            <td><input ng-hide ="ack" type="button" id="readMore" value={{order.rebad}}  ng-click="norefund(order)"></td>
         </tr>
     </table>
 
