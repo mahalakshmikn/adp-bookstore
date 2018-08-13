@@ -156,6 +156,40 @@ var app =angular.module('myApp', ['ui.router'])
                 
             }
         })
+    .state('myHistory', {
+            url: '/myhistory',
+            views: {
+                'header': {
+                    templateUrl: "/templates/ownermain.htm",
+                    controller:"ownermain"
+                    
+                    
+                },
+                
+                'content': {
+                    templateUrl: '/templates/orderhistory.htm',
+                    controller:"orderHistoryCtrl"
+                }
+                
+            }
+        })
+    .state('userHistory', {
+            url: '/history',
+            views: {
+                'header': {
+                    templateUrl: "/templates/main.htm",
+                    controller:"main"
+                    
+                    
+                },
+                
+                'content': {
+                    templateUrl: '/templates/userhistory.htm',
+                    controller:"userHistoryCtrl"
+                }
+                
+            }
+        })
     .state('payment', {
             url: '/payment',
             views: {
@@ -277,6 +311,11 @@ app.controller('main',function($scope,$rootScope,$http,$location,$state,$statePa
         $state.go('myAccount');
         
     }
+     $scope.displayhistory = function () {
+        //$scope.showMy = true;
+        $state.go('userHistory');
+        
+    }
             
 });
             
@@ -307,12 +346,14 @@ app.controller('displayCtrl',function($scope,$http,$location,$state,$rootScope,$
         })
     
     $scope.returnBook = function(x) {
+              $scope.ack = false;
               console.log('inside return');
               console.log('return status' + x.returns);
               
-        //$scope.returns = true;
-        //x.returns = true;
-
+        $scope.returns = true;
+        x.returns = $scope.returns;
+        $scope.refund="refund pending";
+        x.refund = $scope.refund;
         
 var date2 = new Date();
 var date1 = new Date(x.date);
@@ -322,6 +363,7 @@ console.log($scope.dayDifference);
                 if(x.price > $scope.dayDifference) {
         $scope.due =x.price - $scope.dayDifference;
         x.due=$scope.due;
+        
                 }
                 else 
                     {
@@ -517,7 +559,8 @@ app.controller('catListCtrl', function($scope, $http,$location,$state,$statePara
             owner: $rootScope.owner_id,
             button:'return',
             regood:'received good',
-            rebad:'received bad'
+            rebad:'received bad',
+            refund:'not refunded'
         }
         console.log($scope.obj);
          $http.post('/pay',$scope.obj)
@@ -642,6 +685,12 @@ app.controller('ownermain',function($scope,$rootScope,$http,$location,$state,$st
         $state.go('myOrders');
         
     }
+    
+    $scope.displayhistory = function () {
+        //$scope.showMy = true;
+        $state.go('myHistory');
+        
+    }
             
 });
 
@@ -664,10 +713,11 @@ app.controller('orderDisplayCtrl',function($scope,$http,$location,$state,$rootSc
             console.log('successfully got order details of the user');
             
             $scope.calc = function(x) {
-                
+                console.log("x" + x.user);
+                $scope.user = x.user;
                console.log("inside calc");
                 $scope.returns = true;
-        x.returns = true;
+                x.returns = true;
                 
    //console.log("inside calc order" + x.price) ;             
 var date2 = new Date();
@@ -707,12 +757,52 @@ console.log($scope.dayDifference);
             }
         });
 });
+
+app.controller('orderHistoryCtrl',function($scope,$http,$location,$state,$rootScope,$compile) {
+     $scope.user = $rootScope.user;
+     $scope.owner = $rootScope.owner;
+     
+        $scope.object =
+            {
+                name:$scope.owner
+            }
     
     
-       
-
-
+        $http.post('/getHistory',$scope.object)
+        .then(function(response) {
+            console.log('inside display' + response.data);
+            $scope.myhistory = response.data;
             
+            
+            console.log('successfully got history details of the owner ');
+        });
+});
+
+app.controller('userHistoryCtrl',function($scope,$http,$location,$state,$rootScope,$compile) {
+     $scope.user = $rootScope.user;
+     $scope.owner = $rootScope.owner;
+     
+        $scope.object =
+            {
+                name:$scope.user
+            }
+    
+    
+        $http.post('/getuserHistory',$scope.object)
+        .then(function(response) {
+            console.log('inside display' + response.data);
+            $scope.history = response.data;
+            
+            
+            console.log('successfully got history details of the owner ');
+        });
+});
+             
+             
+               
+            
+    
+    
 
        
 
