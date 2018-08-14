@@ -752,8 +752,19 @@ console.log($scope.dayDifference);
             
             $scope.norefund = function(x)
             {
-                $scope.rg=true;
-                console.log("no refund")
+                //$scope.rg=true;
+                console.log("no refund");
+                $scope.due =0;
+                      x.due=0;
+                $scope.obj = x;
+                $scope.obj['user']=$scope.user;
+                $scope.obj['due'] =$scope.due;
+                $scope.obj['owner'] = $scope.owner;
+                $http.post('/norefund',$scope.obj)
+        .then(function(response) {
+            console.log('inside refund' + response.data.returnValue);
+            console.log('successfully updated the refund amount');
+        });
             }
         });
 });
