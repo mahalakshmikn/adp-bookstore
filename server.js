@@ -744,7 +744,8 @@ app.post('/getHistory',function(req,res) {
         else
             {
                 try {
-                    const fileData = JSON.parse(data);
+                    var fileData = JSON.parse(data);
+                    fileData = fileData.filter(function(x) { return x !== null });
                     for(var i =0; i < fileData.length;i++) {
                         if(fileData[i].owner===user) { 
                             
@@ -766,7 +767,7 @@ app.post('/getHistory',function(req,res) {
                             arr.push(obj);
                         }
                     }
-                    
+                    arr = arr.filter(function(x) { return x !== null });
                     console.log(arr);
                     const arrayData = JSON.stringify(arr);
                     res.send(arrayData);
@@ -792,7 +793,8 @@ app.post('/getuserHistory',function(req,res) {
         else
             {
                 try {
-                    const fileData = JSON.parse(data);
+                    var fileData = JSON.parse(data);
+                    fileData = fileData.filter(function(x) { return x !== null });
                     for(var i =0; i < fileData.length;i++) {
                         if(fileData[i].user===user) { 
                             
@@ -814,7 +816,7 @@ app.post('/getuserHistory',function(req,res) {
                             arr.push(obj);
                         }
                     }
-                    
+                    arr = arr.filter(function(x) { return x !== null });
                     console.log(arr);
                     const arrayData = JSON.stringify(arr);
                     res.send(arrayData);
