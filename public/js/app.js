@@ -752,6 +752,7 @@ console.log($scope.dayDifference);
             
             $scope.norefund = function(x)
             {
+                  $scope.user = x.user;
                 //$scope.rg=true;
                 console.log("no refund");
                 $scope.due =0;
