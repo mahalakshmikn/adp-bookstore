@@ -4,7 +4,9 @@
     <p><b>Welcome </b><span id="welcome" ng-model="owner">{{owner}}</span></p>
         <input style="float:right" type="button" id="logout" value="Logout" ng-click="logout()">
     </div>
-    <center><input id="acc_btn" ng-model="showMy" type ="button" value="My Orders" ng-click="display()">
+    <center>
+        <input id="acc_btn" ng-model="showMy" type ="button" value="My Books" ng-click="books()">
+        <input id="acc_btn" ng-model="showMy" type ="button" value="My Orders" ng-click="display()">
         <input id="his_btn" ng-model="showMy" type ="button" value="My History" ng-click="displayhistory()" >
         </center>    
      
