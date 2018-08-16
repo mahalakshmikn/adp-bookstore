@@ -1,6 +1,6 @@
-{
-    "biography":{
-        "book1":{
+[
+    {
+        
             "image":"images/biography/a_adoor.jpg",
             "title" : "Adoor Gopalakrishnan, A Life in Cinema",
             "author" : "Gautaman Bhaskaran",
@@ -10,10 +10,12 @@
             "numOfPages":"218",
             "price":"250",
             "ownerId":"ownerid_3",
-             "button": "BUY" 
+             "button": "BUY",
+             "edit":"edit",
+              "delete":"delete"
               
         },
-        "book2":{
+        {
              "image":"images/biography/a_prison.jpg",
             "title" : "A Prison Diary",
             "author" : " Jeffrey Archer",
@@ -23,9 +25,11 @@
             "numOfPages":"259",
             "price":"300",
             "ownerId":"ownerid_3",
-             "button": "BUY"   
+             "button": "BUY" ,
+            "edit":"edit",
+              "delete":"delete"
         },
-        "book3":{
+        {
             "image":"images/biography/b_brokenbangles.jpg",
             "title" : " Broken Bangles",
             "author" : " Hanifa Deen",
@@ -35,9 +39,11 @@
             "numOfPages":"324",
             "price":"350",
             "ownerId":"ownerid_3",
-             "button": "BUY"   
+             "button": "BUY",
+            "edit":"edit",
+              "delete":"delete"
         },
-        "book4":{
+        {
             "image":"images/biography/c_anna.jpg",
             "title" : "Anna, The Life and Times of C.N. Annadurai",
             "author" : "R. Kannan",
@@ -47,9 +53,11 @@
             "numOfPages":"423",
             "price":"450",
             "ownerId":"ownerid_3",
-             "button": "BUY"   
+             "button": "BUY",
+            "edit":"edit",
+              "delete":"delete"
         },
-        "book5":{
+        {
             "image":"images/biography/d_daughter.jpg",
             "title" : "Daughter of the East",
             "author" : "Daughter of the East",
@@ -59,9 +67,11 @@
             "numOfPages":"225",
             "price":"230",
             "ownerId":"ownerid_3",
-             "button": "BUY"   
+             "button": "BUY",
+            "edit":"edit",
+              "delete":"delete"
         },
-        "book6":{
+        {
             "image":"images/biography/e_armstrong.jpg",
             "title" : " Every Second Counts",
             "author" : " Lance Armstrong",
@@ -71,9 +81,11 @@
             "numOfPages":"246",
             "price":"280",
             "ownerId":"ownerid_3",
-             "button": "BUY"   
+             "button": "BUY",
+            "edit":"edit",
+              "delete":"delete"
         },
-        "book7":{
+        {
             "image":"images/biography/f_forgiveme.jpg",
             "title" : "Forgive Me Amma, The Life and Times of Dhanraj Pillay",
             "author" : " Sundeep Misra",
@@ -83,9 +95,11 @@
             "numOfPages":"200",
             "price":"200",
             "ownerId":"ownerid_3",
-             "button": "BUY"   
+             "button": "BUY",
+            "edit":"edit",
+              "delete":"delete"
         },
-        "book8":{
+        {
             "image":"images/biography/g_gandhi.jpg",
             "title" : "Gandhi Before India",
             "author" : "Ramachandra Guha",
@@ -95,9 +109,11 @@
             "numOfPages":" 672",
             "price":"700",
             "ownerId":"ownerid_3",
-             "button": "BUY"   
+             "button": "BUY",
+            "edit":"edit",
+              "delete":"delete"
         },
-        "book9":{
+        {
             "image":"images/biography/i_indira.jpg",
             "title" : "Indira, The Life of Indira Nehru Gandhi", 
             "author" : "Katherine Frank",
@@ -107,9 +123,11 @@
             "numOfPages":"567",
             "price":"600",
             "ownerId":"ownerid_3",
-             "button": "BUY"   
+             "button": "BUY" ,
+            "edit":"edit",
+              "delete":"delete"
         },
-        "book10":{
+        {
             "image":"images/biography/j_cvraman.jpg",
             "title" : "Journey into Light; Life and Science of CV Raman",
             "author" : " G Venkataraman",
@@ -119,9 +137,11 @@
             "numOfPages":"570",
             "price":"600",
             "ownerId":"ownerid_3",
-             "button": "BUY"   
+             "button": "BUY",
+            "edit":"edit",
+              "delete":"delete"
         }
-    }
-}
+    
+]
 
     
