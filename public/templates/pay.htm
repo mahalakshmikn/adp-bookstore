@@ -3,7 +3,7 @@
         <style>
             input[type=text], input[type=password], input[type=date] {
   /*width: 100%;*/
-  padding: 10px 32px;
+  padding: 11px 33px;
   margin: 5px 0 22px 0;
   display: inline-block;
   border: none;
@@ -17,40 +17,42 @@ input[type=text]:focus, input[type=password]:focus,input[type=date]:focus {
         </style>
     </head>
     <body>
-<div id="containers1">
-    <center><form  method="post">
+<div id="containers">
+    <center><form  method="post" id="myform1">
   <!--<span class="payment-errors"></span>!-->
   <div id="payPortal">
       <h1 class="details">Payment Portal</h1>
       <div class="form-group">
     <label>
       <span class="details">Card Holder Name</span>
-      <input type="text" size="20" name="holder_name" placeholder="Name" required/>
+      <input id="cardname" type="text" size="20" name="holder_name" placeholder="Name" required/>
     </label>
   </div>
   <div class="form-group">
     <label>
       <span class="details">Card Number</span>
-      <input type="text" size="20" name="number" placeholder="Card Number" required />
+      <input id="cardno" type="text" size="20" name="number" placeholder="Card Number" required />
     </label>
   </div>
 <div class="form-group">
     <label>
-      <span class="details">CVC</span>
-      <input type="text" size="4" name="cvc" placeholder="CVC" required />
+      <span id="cvctext" class="details">CVC</span>
+      <input id="cvc" type="text" size="4" name="cvc" placeholder="CVC" required />
     </label>
   </div>
 
   <div class="form-group">
     <label>
       <span class="details">Expiration (MM/YYYY)</span>
-      <input type="text" size="2" name="expMonth" placeholder="MM" ng-model="month" required />
+      <input type="text" size="2" name="expMonth" placeholder="mm" ng-model="month" required />
     </label>
     <span> / </span>
-    <input type="text" size="4" name="expYear" placeholder="YYYY" ng-model="year"  required/>
+    <input type="text" size="4" name="expYear" placeholder="yyyy" ng-model="year"  required/>
   </div>
-
+ <span>
   <button id="bookConfirm" type="submit" ng-click="changeStatus()">Pay</button>
+  <button id="bookCancel" type="submit" ng-click="bookCancel()">Cancel</button>
+</span>
   </div>
 </form>
 </center>
