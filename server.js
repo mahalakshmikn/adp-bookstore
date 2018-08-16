@@ -4,13 +4,14 @@ var fs = require('fs');
 var app = express();
 var bodyParser = require('body-parser'); 
 //var jsonfile = require('jsonfile');
-var file ='./json/userdata.json';
+var file ='./json/newuserdata.json';
 var file1 ='./json/newbook.json';
 var file11 ='./json/newbook_children.json';
 var file111 ='./json/newbook_biography.json';
 var file2 ='./json/newpurchase.json';
 var file3 = './json/ownerdata.json';
 var file4 = './json/history.json';
+var file5 = './json/addbook.json';
 app.use(express.static(__dirname + '/public'));
 
 app.use(bodyParser.urlencoded({'extended':'true'}));            // parse application/x-www-form-urlencoded
@@ -118,16 +119,45 @@ app.post('/signin',function(req,res) {
 });
 
 app.post('/ss',function(req,res) {
+     var arr=[];
+    var obj={};
     fs.readFile(file1,(err,data)=> {
+       
         if(err) {
             console.error(err);
         }
         else{
             try {
-                const fileData = JSON.parse(data);
-                console.log('success');
-                //console.log(fileData);
-                res.send(fileData);
+                var fileData = JSON.parse(data);
+                fileData = fileData.filter(function(x) { return x !== null });
+                for(var i =0; i < fileData.length;i++) {
+                        
+                            var obj =
+                                {
+                                image:fileData[i].image,
+                                title:fileData[i].title,
+                                author:fileData[i].author,
+                                price:fileData[i].price,
+                                description:fileData[i].description,
+                                ownerId:fileData[i].ownerId,
+                                refNo:fileData[i].refNo,
+                                ISBN:fileData[i].ISBN,
+                                button:fileData[i].button,
+                                numOfPages: fileData[i].numOfPages,
+                                edit: fileData[i].edit,
+                                delete:fileData[i].delete
+                                    
+                            }
+                            
+                            arr.push(obj);
+                        
+                    }
+                    
+                    console.log(arr);
+                    arr = arr.filter(function(x) { return x !== null });
+                    const arrayData = JSON.stringify(arr);
+                    res.send(arrayData);
+                    
                 
             }
             catch(exception) {
@@ -140,16 +170,45 @@ app.post('/ss',function(req,res) {
 });
 
 app.post('/ch',function(req,res) {
+    var arr=[];
+    var obj={};
     fs.readFile(file11,(err,data)=> {
+       
         if(err) {
             console.error(err);
         }
         else{
             try {
-                const fileData = JSON.parse(data);
-                console.log('success');
-                //console.log(fileData);
-                res.send(fileData);
+                var fileData = JSON.parse(data);
+                fileData = fileData.filter(function(x) { return x !== null });
+                for(var i =0; i < fileData.length;i++) {
+                        
+                            var obj =
+                                {
+                                image:fileData[i].image,
+                                title:fileData[i].title,
+                                author:fileData[i].author,
+                                price:fileData[i].price,
+                                description:fileData[i].description,
+                                ownerId:fileData[i].ownerId,    
+                                refNo:fileData[i].refNo,
+                                ISBN:fileData[i].ISBN,
+                                button:fileData[i].button,
+                                numOfPages: fileData[i].numOfPages,
+                                edit: fileData[i].edit,
+                                delete:fileData[i].delete
+                                    
+                            }
+                            
+                            arr.push(obj);
+                        
+                    }
+                    
+                    console.log(arr);
+                    arr = arr.filter(function(x) { return x !== null });
+                    const arrayData = JSON.stringify(arr);
+                    res.send(arrayData);
+                    
                 
             }
             catch(exception) {
@@ -158,20 +217,50 @@ app.post('/ch',function(req,res) {
         }
         
     });
+    
     
 });
 
 app.post('/bi',function(req,res) {
+    var arr=[];
+    var obj={};
     fs.readFile(file111,(err,data)=> {
+       
         if(err) {
             console.error(err);
         }
         else{
             try {
-                const fileData = JSON.parse(data);
-                console.log('success');
-                //console.log(fileData);
-                res.send(fileData);
+                var fileData = JSON.parse(data);
+                fileData = fileData.filter(function(x) { return x !== null });
+                for(var i =0; i < fileData.length;i++) {
+                        
+                            var obj =
+                                {
+                                image:fileData[i].image,
+                                title:fileData[i].title,
+                                author:fileData[i].author,
+                                price:fileData[i].price,
+                                description:fileData[i].description,
+                                ownerId:fileData[i].ownerId,    
+                                refNo:fileData[i].refNo,
+                                ISBN:fileData[i].ISBN,
+                                button:fileData[i].button,
+                                numOfPages: fileData[i].numOfPages,
+                                edit: fileData[i].edit,
+                                delete:fileData[i].delete
+                                    
+                            }
+                            
+                            arr.push(obj);
+                        
+                    }
+                    
+                    console.log(arr);
+                    arr = arr.filter(function(x) { return x !== null });
+                    const arrayData = JSON.stringify(arr);
+                    res.send(arrayData);
+                    
                 
             }
             catch(exception) {
@@ -180,7 +269,6 @@ app.post('/bi',function(req,res) {
         }
         
     });
-    
 });
 
 
@@ -191,6 +279,7 @@ app.post('/pay',function(req,res) {
     var obj = req.body;
     var title = req.body.title;
     var user = req.body.user;
+    var owner = req.body.owner;
     var flag=0;
     fs.readFile(file2, (err, data) => {
     if (err && err.code === "ENOENT") {
@@ -831,10 +920,321 @@ app.post('/getuserHistory',function(req,res) {
 });
 
 
+app.post('/addBook1',function(req,res) {
+    
+    console.log(req.body);
+  
+    
+    var obj = req.body;
+    var title = req.body.title;
+    var author = req.body.author;
+    var flag =0;
+    fs.readFile(file1, (err, data) => {
+    if (err && err.code === "ENOENT") {
+        
+        return fs.writeFile(file1, JSON.stringify([obj]), error => console.error);
+    }
+    else if (err) {
+        
+        console.error(err);
+    }    
+    
+    else {
+        try {
+            var fileData = JSON.parse(data);
+            fileData = fileData.filter(function(x) { return x !== null });
+            for(var i =0; i < fileData.length;i++) {
+                if(fileData[i].title===title && fileData[i].author===author) {
+                    flag =1;
+                    break;
+                }
+                    
+            }
+            //console.log(fileData);
+            /*anthology = JSON.parse(anthology);*/
+            if(flag ==1) {
+                var msgobj = {
+                    name:"failure"
+                }
+                res.send(msgobj);
+            }
+            else {
+            fileData.push(obj);
+                var msgobj = {
+                    name:"success"
+                }
+            res.send(msgobj);
+            //4. Write the file back out
+            return fs.writeFile(file1, JSON.stringify(fileData), error => console.error);
+            }
+            }
+         catch(exception) {
+            console.error(exception);
+        }
+       
+    }
+    
+});
+    
+});
+
+app.post('/addBook2',function(req,res) {
+    
+    console.log(req.body);
+  
+    
+    var obj = req.body;
+    fs.readFile(file11, (err, data) => {
+    if (err && err.code === "ENOENT") {
+        
+        return fs.writeFile(file11, JSON.stringify([obj]), error => console.error);
+    }
+    else if (err) {
+        
+        console.error(err);
+    }    
+    
+    else {
+        try {
+            var fileData = JSON.parse(data);
+            fileData = fileData.filter(function(x) { return x !== null });
+            for(var i =0; i < fileData.length;i++) {
+                if(fileData[i].title===title && fileData[i].author===author) {
+                    flag =1;
+                    break;
+                }
+                    
+            }
+            //console.log(fileData);
+            /*anthology = JSON.parse(anthology);*/
+            if(flag ==1) {
+                var msgobj = {
+                    name:"failure"
+                }
+                res.send(msgobj);
+            }
+            else {
+            fileData.push(obj);
+                var msgobj = {
+                    name:"success"
+                }
+            res.send(msgobj);
+            //4. Write the file back out
+            return fs.writeFile(file11, JSON.stringify(fileData), error => console.error);
+            }
+            
+            //4. Write the file back out
+            
+            }
+         catch(exception) {
+            console.error(exception);
+        }
+        res.send();
+    }
+    
+});
+    
+});
+
+app.post('/addBook3',function(req,res) {
+    
+    console.log(req.body);
+  
+    
+    var obj = req.body;
+    fs.readFile(file111, (err, data) => {
+    if (err && err.code === "ENOENT") {
+        
+        return fs.writeFile(file111, JSON.stringify([obj]), error => console.error);
+    }
+    else if (err) {
+        
+        console.error(err);
+    }    
+    
+    else {
+        try {
+            var fileData = JSON.parse(data);
+            fileData = fileData.filter(function(x) { return x !== null });
+            
+            for(var i =0; i < fileData.length;i++) {
+                if(fileData[i].title===title && fileData[i].author===author) {
+                    flag =1;
+                    break;
+                }
+                    
+            }
+            //console.log(fileData);
+            /*anthology = JSON.parse(anthology);*/
+            if(flag ==1) {
+                var msgobj = {
+                    name:"failure"
+                }
+                res.send(msgobj);
+            }
+            else {
+            fileData.push(obj);
+                var msgobj = {
+                    name:"success"
+                }
+            res.send(msgobj);
+            //4. Write the file back out
+            return fs.writeFile(file111, JSON.stringify(fileData), error => console.error);
+            }
+            }
+         catch(exception) {
+            console.error(exception);
+        }
+        res.send();
+    }
+    
+});
+    
+});
+
+app.post('/delBook1',function(req,res) {
+    
+    console.log(req.body);
+    var title = req.body.title;
+    var author = req.body.author;
+    console.log("title" + title);
+    console.log("author" + author);
+    fs.readFile(file1, (err, data) => {
+    if (err && err.code === "ENOENT") {
+        
+        return fs.writeFile(file1, JSON.stringify([obj]), error => console.error);
+    }
+    else if (err) {
+        
+        console.error(err);
+    }    
+    
+    else {
+        try {
+            var fileData = JSON.parse(data);
+            fileData = fileData.filter(function(x) { return x !== null });
+            //console.log(fileData);
+            console.log("inside try");
+            for(var i =0; i < fileData.length;i++) {
+                if(fileData[i].title==title && fileData[i].author) {
+                    console.log("inside if");
+            delete fileData[i];
+            fs.writeFile(file1, JSON.stringify(fileData), function (err) {
+  if (err) return console.log(err);
+  //console.log(JSON.stringify(file));
+  console.log('writing to ' + file1);
+   });
+                }
+            //4. Write the file back out
+            
+            }
+         }
+        catch(exception) {
+            console.error(exception);
+        }
+        res.send();
+    }
+    
+});
+    
+});
+
+app.post('/delBook2',function(req,res) {
+    
+    console.log(req.body);
+    var title = req.body.title;
+    var author = req.body.author;
+    console.log("title" + title);
+    console.log("author" + author);
+    fs.readFile(file11, (err, data) => {
+    if (err && err.code === "ENOENT") {
+        
+        return fs.writeFile(file11, JSON.stringify([obj]), error => console.error);
+    }
+    else if (err) {
+        
+        console.error(err);
+    }    
+    
+    else {
+        try {
+            var fileData = JSON.parse(data);
+            fileData = fileData.filter(function(x) { return x !== null });
+            //console.log(fileData);
+            console.log("inside try");
+            for(var i =0; i < fileData.length;i++) {
+                if(fileData[i].title==title && fileData[i].author) {
+                    console.log("inside if");
+            delete fileData[i];
+            fs.writeFile(file11, JSON.stringify(fileData), function (err) {
+  if (err) return console.log(err);
+  //console.log(JSON.stringify(file));
+  console.log('writing to ' + file11);
+   });
+                }
+            //4. Write the file back out
+            
+            }
+         }
+        catch(exception) {
+            console.error(exception);
+        }
+        res.send();
+    }
+    
+});
+    
+});
+
+app.post('/delBook3',function(req,res) {
+    
+    console.log(req.body);
+    var title = req.body.title;
+    var author = req.body.author;
+    console.log("title" + title);
+    console.log("author" + author);
+    fs.readFile(file111, (err, data) => {
+    if (err && err.code === "ENOENT") {
+        
+        return fs.writeFile(file111, JSON.stringify([obj]), error => console.error);
+    }
+    else if (err) {
+        
+        console.error(err);
+    }    
+    
+    else {
+        try {
+            var fileData = JSON.parse(data);
+            fileData = fileData.filter(function(x) { return x !== null });
+            //console.log(fileData);
+            console.log("inside try");
+            for(var i =0; i < fileData.length;i++) {
+                if(fileData[i].title==title && fileData[i].author) {
+                    console.log("inside if");
+            delete fileData[i];
+            fs.writeFile(file111, JSON.stringify(fileData), function (err) {
+  if (err) return console.log(err);
+  //console.log(JSON.stringify(file));
+  console.log('writing to ' + file111);
+   });
+                }
+            //4. Write the file back out
+            
+            }
+         }
+        catch(exception) {
+            console.error(exception);
+        }
+        res.send();
+    }
+    
+});
+    
+});
 
 
-
-
+    
 app.listen(8080, function() {
     console.log('app is running in localhost:8080');
 });
