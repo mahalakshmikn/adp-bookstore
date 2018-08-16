@@ -1,0 +1,17 @@
+<div class="col12">
+    <div id="catTable" class="col333">
+<table id="cat_table" style="width:100%">
+  <tr>
+    <th><input  id = "addbooks" type="button" ng-click="addbooks()" value="Add Books" ng-model="data"></th>
+    </tr>
+</table>
+</div>
+<div class="col9" id="cat">
+<div  id="box" class="col3" ng-repeat="x in myBooks">
+          <img id="simage" src={{x.image}}>
+          <p id="title">{{x.title}}</p>
+          <p id ="author">{{x.author}}</p>
+          <input id="readMore" type="button" value={{x.delete}} ng-click="delete(x)" ng-model="myVar">
+</div>
+</div>
+</div>

@@ -1,0 +1,61 @@
+<html>
+    <head>
+        <style>
+            * {box-sizing: border-box}
+            
+            input[type=text], input[type=email],input[type=password], input[type=date] {
+  /*width: 100%;*/
+  padding: 10px 32px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: #ffb366;
+}
+
+input[type=text]:focus, input[type=password]:focus,input[type=date]:focus {
+  background-color: #ff9900;
+  outline: none;
+}
+        </style>
+    </head>
+    <body>
+        <center>
+            
+        <div id="containers">
+      <h1 class="details">Add Book</h1>
+      
+        <form name="mform" id ="myform1" ng-submit="add()">
+            
+            <label class="details" for="newtitle"><b>Title</b></label>
+            <input type="text" name="newtitle" ng-model="formData.newtitle" placeholder="Title" required><br><br>
+           
+            <label class="details" for="newauthor"><b>Author</b></label>
+            <input type="text" name ="newauthor" ng-model="formData.newauthor" placeholder="Author" required><br><br>
+            
+            <label class="details" for ="newprice"><b>Price</b>
+            </label><input type="text" name ="newprice" ng-model="formData.newprice" placeholder="Price" required><br><br>
+            
+            <label class="details" for="newdesc"><b>Description</b></label>
+            <input type="text" name="newdesc" ng-model="formData.newdesc" placeholder="Description" required><br><br>
+            
+            <label class="details" for="newref"><b>Reference Number</b></label>
+            <input  type="text" ng-model="formData.newref" placeholder="Reference Number" required><br><br>
+            
+            <label class="details" for="newisbn"><b>ISBN</b></label>
+            <input  type="text" ng-model="formData.newisbn" placeholder="ISBN" required><br><br>
+            
+            <label class="details" for="phone"><b>Number of pages</b></label>
+            <input  type="text" ng-model="formData.newpageno" placeholder="Total pages" required><br><br>
+            
+            
+            <input id="bookConfirm" type ="submit" value="ADD BOOK">
+        </form>
+        </div>
+            
+            
+    
+            
+            
+        </center>  
+    </body>
+</html>
