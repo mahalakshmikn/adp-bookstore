@@ -7,6 +7,8 @@ var app =angular.module('myApp', ['ui.router'])
                 $rootScope.price ="";
                 $rootScope.date1="";
                 $rootScope.owner="";
+                $rootScope.owner_id="";
+                //$rootScope.ownerVar = false;
                 
                               })
 .config(['$locationProvider', '$stateProvider','$urlRouterProvider', function ($locationProvider, $stateProvider,$urlRouterProvider) {
@@ -156,6 +158,23 @@ var app =angular.module('myApp', ['ui.router'])
                 
             }
         })
+    .state('addBooks', {
+            url: '/addBook',
+            views: {
+                'header': {
+                    templateUrl: "/templates/ownermain.htm",
+                    controller:"ownermain"
+                    
+                    
+                },
+                
+                'content': {
+                    templateUrl: '/templates/addbooks.htm',
+                    controller:"addbooksCtrl"
+                }
+                
+            }
+        })
     .state('myHistory', {
             url: '/myhistory',
             views: {
@@ -216,6 +235,25 @@ var app =angular.module('myApp', ['ui.router'])
                         
                        templateUrl: '/templates/ownerlogin.htm',
                     controller:"ownerloginCtrl" 
+                    }
+                    
+                }
+        })
+    .state('myBooks', {
+            url:'/myBooks',
+                views: {
+                    'header': {
+                    templateUrl: "/templates/ownermain.htm",
+                    controller:"ownermain"
+                    
+                    
+                },
+                
+                    
+                    'content': {
+                        
+                       templateUrl: '/templates/mybooks.htm',
+                       controller:"myBooksCtrl" 
                     }
                     
                 }
@@ -417,7 +455,7 @@ app.controller('catListCtrl', function($scope, $http,$location,$state,$statePara
             .then(function(response){
             console.log(response);
             console.log('success');
-            $scope.shortstory = response.data.anthology;
+            $scope.shortstory = response.data;
             console.log($scope.shortstory)
             //$state.go('login')
            
@@ -437,7 +475,7 @@ app.controller('catListCtrl', function($scope, $http,$location,$state,$statePara
             .then(function(response){
             console.log(response);
             console.log('success');
-            $scope.shortstory = response.data.children;
+            $scope.shortstory = response.data;
             console.log($scope.shortstory)
             //$state.go('login')
            
@@ -457,7 +495,7 @@ app.controller('catListCtrl', function($scope, $http,$location,$state,$statePara
             .then(function(response){
             console.log(response);
             console.log('success');
-            $scope.shortstory = response.data.biography;
+            $scope.shortstory = response.data;
             console.log($scope.shortstory)
             //$state.go('login')
            
@@ -471,6 +509,7 @@ app.controller('catListCtrl', function($scope, $http,$location,$state,$statePara
     $scope.addToCart = function(x) {
        console.log(x);
         $rootScope.owner_id = x.ownerId;
+        console.log("owner" + $rootScope.owner_id);
         $scope.myVar = true;
         var img = document.getElementById("simages");
         img.setAttribute("src",x.image);
@@ -529,7 +568,9 @@ app.controller('catListCtrl', function($scope, $http,$location,$state,$statePara
                 $scope.ButtonText="booked";
                 $scope.dsblBtn = true;
                 $scope.flag=1;
-             $window.alert("Your booking has been confirmed");
+            $window.alert("Your booking has been confirmed");
+            //var popup = document.getElementById("myPopup");
+            //popup.classList.toggle("show");
               $state.go('payment');  
             }
         
@@ -547,6 +588,7 @@ app.controller('catListCtrl', function($scope, $http,$location,$state,$statePara
         $rootScope.flags =0;
         console.log('title:' + $scope.titles);
         console.log('author' + $scope.authors);
+        console.log('owner' + $rootScope.owner_id);
         $rootScope.date1 = new Date();
         $scope.obj = {
             user:$scope.user,
@@ -565,7 +607,7 @@ app.controller('catListCtrl', function($scope, $http,$location,$state,$statePara
         console.log($scope.obj);
          $http.post('/pay',$scope.obj)
             .then(function(response){
-             console.log('success inside makepayment');
+             console.log('success inside payment');
             //console.log(response);
              console.log(response.data);
              if(response.data.err=='failure') {
@@ -609,12 +651,18 @@ app.controller('payCtrl',function($scope,$rootScope,$http,$location,$state,$stat
             $state.go('categories');
         }
           }
+          $scope.bookCancel = function() {
+              $window.alert("your booking has been cancelled.")
+              $state.go('categories');
+          }
         
     });  
 
  app.controller('ownerloginCtrl',function($scope,$rootScope,$http,$location,$state,$stateParams,$window) {
+        $rootScope.ownerVar = !$rootScope.ownerVar;
     
           $scope.login = function() {
+              $rootScope.ownerVar = true;
               $http.post('/ownersignin',$scope.formData)
         .then(function(response) {
             console.log(response.data.msg);
@@ -676,8 +724,12 @@ app.controller('ownermain',function($scope,$rootScope,$http,$location,$state,$st
         
     }
     $scope.logout = function() {
+        //$rootScope.ownerVar = false;
         $rootScope.owner=null;
         $state.go('owner');
+    }
+    $scope.books = function() {
+        $state.go("myBooks");
     }
     
     $scope.display = function () {
@@ -694,7 +746,7 @@ app.controller('ownermain',function($scope,$rootScope,$http,$location,$state,$st
             
 });
 
-app.controller('orderDisplayCtrl',function($scope,$http,$location,$state,$rootScope,$compile) {
+app.controller('orderDisplayCtrl',function($scope,$http,$location,$state,$rootScope,$compile,$window) {
      $scope.user = $rootScope.user;
      $scope.owner = $rootScope.owner;
      
@@ -747,12 +799,14 @@ console.log($scope.dayDifference);
         .then(function(response) {
             console.log('inside refund' + response.data.returnValue);
             console.log('successfully updated the refund amount');
+            $window.alert("Thank you for your acknowledgement!!!. Rs. " + $scope.due + " is refunded to " + $scope.user +  ". The process is successfully completed.");
         });
             }
             
             $scope.norefund = function(x)
             {
                   $scope.user = x.user;
+                $scope.old_due = x.due;
                 //$scope.rg=true;
                 console.log("no refund");
                 $scope.due =0;
@@ -765,12 +819,13 @@ console.log($scope.dayDifference);
         .then(function(response) {
             console.log('inside refund' + response.data.returnValue);
             console.log('successfully updated the refund amount');
+                    $window.alert("Thank you for your acknowledgement!!!. The refund amount of Rs. " + $scope.old_due + " is cancelled to " + $scope.user +  ". The process is successfully completed.");
         });
             }
         });
 });
 
-app.controller('orderHistoryCtrl',function($scope,$http,$location,$state,$rootScope,$compile) {
+app.controller('orderHistoryCtrl',function($scope,$http,$location,$state,$rootScope,$compile,$window) {
      $scope.user = $rootScope.user;
      $scope.owner = $rootScope.owner;
      
@@ -806,11 +861,196 @@ app.controller('userHistoryCtrl',function($scope,$http,$location,$state,$rootSco
             $scope.history = response.data;
             
             
-            console.log('successfully got history details of the owner ');
+            console.log('successfully got history details of the user ');
         });
 });
+
+app.controller('myBooksCtrl',function($scope,$http,$location,$state,$rootScope,$compile,$window) {
+     
+     $scope.owner = $rootScope.owner;
+     
+        $scope.object =
+            {
+                name:$scope.owner
+            }
+    
+    
+        /*$http.post('/getownerBooks',$scope.object)
+        .then(function(response) {
+            console.log($scope.owner);
+            console.log('inside myBooksCtrl' + response.data.anthology);
+            if($scope.owner === "ownerid_1") {
+            $scope.myBooks = response.data.anthology;
+            }
+            else if($scope.owner=== "ownerid_2") {
+                $scope.myBooks = response.data.children;
+            }
+            else if($scope.owner=== "ownerid_3") {
+                $scope.myBooks = response.data.biography;
+            }
+        console.log('successfully got book details of the owner ');
+        });*/
+    
+   
+    if($scope.owner ==="ownerid_1") {
+        $http.post('/ss',$scope.data)
+            .then(function(response){
+            console.log(response);
+            console.log('success');
+            $scope.myBooks = response.data;
+            console.log($scope.myBooks)
+            //$state.go('login')
+           
+            
+        })
+            .catch(function(data) {
+            console.log('failed');
+        })
+        
+    }
+    else if($scope.owner==="ownerid_2") {
+        $http.post('/ch',$scope.data)
+            .then(function(response){
+            console.log(response);
+            console.log('success');
+            $scope.myBooks = response.data;
+            console.log($scope.myBooks)
+            //$state.go('login')
+           
+            
+        })
+            .catch(function(data) {
+            console.log('failed');
+        })
+        
+    }
+    else if($scope.owner==="ownerid_3") {
+        $http.post('/bi',$scope.data)
+            .then(function(response){
+            console.log(response);
+            console.log('success');
+            $scope.myBooks = response.data;
+            console.log($scope.myBooks)
+            //$state.go('login')
+           
+            
+        })
+            .catch(function(data) {
+            console.log('failed');
+        })
+        
+    }
+     $scope.addbooks = function() {
+        $state.go('addBooks')
+    }
+     $scope.delete = function(x) {
+         $scope.delobj = x;
+         console.log("inside delete");
+         console.log($scope.owner);
+         if($scope.owner==="ownerid_1")
+             {
+               $http.post('/delBook1',$scope.delobj)
+        .then(function(response) {
+        console.log('successfully deleted books from the database');
+        $window.alert("successfully deleted this book from the database");
+        });  
+             }
+         else if($scope.owner=="ownerid_2") {
+             $http.post('/delBook2',$scope.delobj)
+        .then(function(response) {
+        console.log('successfully deleted books from the database');
+        $window.alert("successfully deleted this book from the database");
+        });  
              
+         }
+         else if($scope.owner=="ownerid_3") {
+             $http.post('/delBook3',$scope.delobj)
+        .then(function(response) {
+        console.log('successfully deleted books from the database');
+        $window.alert("successfully deleted this book from the database");         
+        });  
              
+         }
+     }
+});
+             
+ app.controller('addbooksCtrl',function($scope,$http,$location,$state,$rootScope,$compile,$window) {
+     
+     $scope.owner = $rootScope.owner;
+     
+        $scope.object =
+            {
+                name:$scope.owner
+            }
+    
+    
+        
+    
+    $scope.add = function() {
+        $scope.addobj = {
+            
+            title : $scope.formData.newtitle,
+            author:$scope.formData.newauthor,
+            description:$scope.formData.newdesc,
+            price:$scope.formData.newprice,
+            refNo:$scope.formData.newref,
+            ISBN:$scope.formData.newisbn,
+            numOfPages:$scope.formData.newpageno,
+            ownerId:$scope.owner,
+            button:"BUY",
+            edit:"edit",
+            delete:"delete"
+    }
+        console.log($scope.addobj);
+        if($scope.owner==="ownerid_1") {
+            console.log("inside if");
+        $http.post('/addBook1',$scope.addobj)
+        .then(function(response) {
+            console.log(response.data);
+            if(response.data.name=="success") {
+        console.log('successfully added books in the database');
+        $window.alert("successfully added this book in the database");
+            }
+            else  if(response.data.name=="failure")  {
+                console.log('failed to add books in the database');
+        $window.alert("This book already exists in your database!!!");
+            }
+        })
+            .catch(function(data) {
+                console.log("failed");
+            })
+        }
+        else if($scope.owner==="ownerid_2") {
+        $http.post('/addBook2',$scope.addobj)
+        .then(function(response) {
+        if(response.data.name=="success") {
+        console.log('successfully added books in the database');
+        $window.alert("successfully added this book in the database");
+            }
+            else  if(response.data.name=="failure")  {
+                console.log('failed to add books in the database');
+        $window.alert("This book already exists in your database!!!");
+            } 
+        });
+        }
+        else if($scope.owner==="ownerid_3") {
+        $http.post('/addBook3',$scope.addobj)
+        .then(function(response) {
+        if(response.data.name=="success") {
+        console.log('successfully added books in the database');
+        $window.alert("successfully added this book in the database");
+            }
+            else  if(response.data.name=="failure")  {
+                console.log('failed to add books in the database');
+        $window.alert("This book already exists in your database!!!");
+            }  
+        });
+        }
+        
+    }
+    
+
+});            
                
             
     
