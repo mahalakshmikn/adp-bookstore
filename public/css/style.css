@@ -139,6 +139,7 @@ body
 #maincontent
 {
     height:50%;
+    margin-top:-20px;
 }
  .col3
            {
@@ -170,16 +171,18 @@ hr
 }
 #logout
 {
+    padding:14px 40px;
     margin-right:20px;
     margin-top:-25px;
-    background-color:#ff9900;
-    border:1px solid #ff9900;
+    background-color:#cc0066;
+    border:1px solid #cc0066;
+    font-size: :14px;
     
     
 }
 #welcome
 {
-    text-transform:uppercase;
+    /*text-transform:uppercase;*/
     color:red;
     font-size:13px;
     font-weight:bold;
@@ -318,7 +321,24 @@ table,tr,th,td
 #bookConfirm {
     padding:14px 40px;
     margin-left:10px;
-    background-color:#ff9900;
+    background-color:#cc0066;
+    border:1px solid #ff9900;
+    font-size: :14px;
+    
+}
+
+#addbooks {
+    padding:14px 40px;
+    margin-left:10px;
+    background-color:#ffa366;
+    border:1px solid #ffa366;
+    font-size: :14px;
+    
+}
+#bookCancel {
+    padding:14px 40px;
+    margin-left:10px;
+    background-color:red;
     border:1px solid #ff9900;
     font-size: :14px;
     
@@ -420,4 +440,60 @@ background-color:#ffe6cc;
 margin-right:400px;
 margin-bottom:150px;                
   padding: 16px;
+}
+
+.popup {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* The actual popup */
+.popup .popuptext {
+    visibility: hidden;
+    width: 160px;
+    background-color:#ddd;
+    color: black;
+    text-align: center;
+    border-radius: 6px;
+    padding: 8px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -80px;
+}
+
+/* Popup arrow */
+.popup .popuptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+}
+
+/* Toggle this class - hide and show the popup */
+.popup .show {
+    visibility: visible;
+    -webkit-animation: fadeIn 1s;
+    animation: fadeIn 1s;
+}
+
+/* Add animation (fade in the popup) */
+@-webkit-keyframes fadeIn {
+    from {opacity: 0;} 
+    to {opacity: 1;}
+}
+
+@keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity:1 ;}
 }
