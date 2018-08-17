@@ -131,7 +131,7 @@ app.post('/ss',function(req,res) {
                 var fileData = JSON.parse(data);
                 fileData = fileData.filter(function(x) { return x !== null });
                 for(var i =0; i < fileData.length;i++) {
-                        
+                        if(fileData[i].archive=="false") {
                             var obj =
                                 {
                                 image:fileData[i].image,
@@ -145,11 +145,12 @@ app.post('/ss',function(req,res) {
                                 button:fileData[i].button,
                                 numOfPages: fileData[i].numOfPages,
                                 edit: fileData[i].edit,
-                                delete:fileData[i].delete
-                                    
+                                archbtn:fileData[i].archbtn,
+                                archive:fileData[i].archive   
                             }
                             
                             arr.push(obj);
+                        }
                         
                     }
                     
@@ -182,7 +183,7 @@ app.post('/ch',function(req,res) {
                 var fileData = JSON.parse(data);
                 fileData = fileData.filter(function(x) { return x !== null });
                 for(var i =0; i < fileData.length;i++) {
-                        
+                        if(fileData[i].archive=="false") {
                             var obj =
                                 {
                                 image:fileData[i].image,
@@ -196,11 +197,13 @@ app.post('/ch',function(req,res) {
                                 button:fileData[i].button,
                                 numOfPages: fileData[i].numOfPages,
                                 edit: fileData[i].edit,
-                                delete:fileData[i].delete
+                                archbtn:fileData[i].archbtn,
+                                archive:fileData[i].archive    
                                     
                             }
                             
                             arr.push(obj);
+                        }
                         
                     }
                     
@@ -234,7 +237,7 @@ app.post('/bi',function(req,res) {
                 var fileData = JSON.parse(data);
                 fileData = fileData.filter(function(x) { return x !== null });
                 for(var i =0; i < fileData.length;i++) {
-                        
+                        if(fileData[i].archive=="false") {
                             var obj =
                                 {
                                 image:fileData[i].image,
@@ -248,11 +251,13 @@ app.post('/bi',function(req,res) {
                                 button:fileData[i].button,
                                 numOfPages: fileData[i].numOfPages,
                                 edit: fileData[i].edit,
-                                delete:fileData[i].delete
+                                archbtn:fileData[i].archbtn,
+                                archive:fileData[i].archive
                                     
                             }
                             
                             arr.push(obj);
+                        }
                         
                     }
                     
@@ -1118,7 +1123,8 @@ app.post('/delBook1',function(req,res) {
             for(var i =0; i < fileData.length;i++) {
                 if(fileData[i].title==title && fileData[i].author) {
                     console.log("inside if");
-            delete fileData[i];
+                    fileData[i].archive = "true";
+                    fileData[i].archbtn = "unarchive";
             fs.writeFile(file1, JSON.stringify(fileData), function (err) {
   if (err) return console.log(err);
   //console.log(JSON.stringify(file));
@@ -1165,7 +1171,9 @@ app.post('/delBook2',function(req,res) {
             for(var i =0; i < fileData.length;i++) {
                 if(fileData[i].title==title && fileData[i].author) {
                     console.log("inside if");
-            delete fileData[i];
+            //delete fileData[i];
+                    fileData[i].archive="true";
+                    fileData[i].archbtn = "unarchive";
             fs.writeFile(file11, JSON.stringify(fileData), function (err) {
   if (err) return console.log(err);
   //console.log(JSON.stringify(file));
@@ -1212,7 +1220,9 @@ app.post('/delBook3',function(req,res) {
             for(var i =0; i < fileData.length;i++) {
                 if(fileData[i].title==title && fileData[i].author) {
                     console.log("inside if");
-            delete fileData[i];
+            //delete fileData[i];
+                    fileData[i].archive="true";
+                    fileData[i].archbtn = "unarchive";
             fs.writeFile(file111, JSON.stringify(fileData), function (err) {
   if (err) return console.log(err);
   //console.log(JSON.stringify(file));
@@ -1232,6 +1242,315 @@ app.post('/delBook3',function(req,res) {
 });
     
 });
+
+
+app.post('/unarchBook1',function(req,res) {
+    
+    console.log(req.body);
+    var title = req.body.title;
+    var author = req.body.author;
+    console.log("title" + title);
+    console.log("author" + author);
+    fs.readFile(file1, (err, data) => {
+    if (err && err.code === "ENOENT") {
+        
+        return fs.writeFile(file1, JSON.stringify([obj]), error => console.error);
+    }
+    else if (err) {
+        
+        console.error(err);
+    }    
+    
+    else {
+        try {
+            var fileData = JSON.parse(data);
+            fileData = fileData.filter(function(x) { return x !== null });
+            //console.log(fileData);
+            console.log("inside try");
+            for(var i =0; i < fileData.length;i++) {
+                if(fileData[i].title==title && fileData[i].author) {
+                    console.log("inside if");
+                    fileData[i].archive = "false";
+                    fileData[i].archbtn = "archive";
+            fs.writeFile(file1, JSON.stringify(fileData), function (err) {
+  if (err) return console.log(err);
+  //console.log(JSON.stringify(file));
+  console.log('writing to ' + file1);
+   });
+                }
+            //4. Write the file back out
+            
+            }
+         }
+        catch(exception) {
+            console.error(exception);
+        }
+        res.send();
+    }
+    
+});
+    
+});
+
+app.post('/unarchBook2',function(req,res) {
+    
+    console.log(req.body);
+    var title = req.body.title;
+    var author = req.body.author;
+    console.log("title" + title);
+    console.log("author" + author);
+    fs.readFile(file11, (err, data) => {
+    if (err && err.code === "ENOENT") {
+        
+        return fs.writeFile(file11, JSON.stringify([obj]), error => console.error);
+    }
+    else if (err) {
+        
+        console.error(err);
+    }    
+    
+    else {
+        try {
+            var fileData = JSON.parse(data);
+            fileData = fileData.filter(function(x) { return x !== null });
+            //console.log(fileData);
+            console.log("inside try");
+            for(var i =0; i < fileData.length;i++) {
+                if(fileData[i].title==title && fileData[i].author) {
+                    console.log("inside if");
+            //delete fileData[i];
+                    fileData[i].archive="false";
+                    fileData[i].archbtn = "archive";
+            fs.writeFile(file11, JSON.stringify(fileData), function (err) {
+  if (err) return console.log(err);
+  //console.log(JSON.stringify(file));
+  console.log('writing to ' + file11);
+   });
+                }
+            //4. Write the file back out
+            
+            }
+         }
+        catch(exception) {
+            console.error(exception);
+        }
+        res.send();
+    }
+    
+});
+    
+});
+
+app.post('/unarchBook3',function(req,res) {
+    
+    console.log(req.body);
+    var title = req.body.title;
+    var author = req.body.author;
+    console.log("title" + title);
+    console.log("author" + author);
+    fs.readFile(file111, (err, data) => {
+    if (err && err.code === "ENOENT") {
+        
+        return fs.writeFile(file111, JSON.stringify([obj]), error => console.error);
+    }
+    else if (err) {
+        
+        console.error(err);
+    }    
+    
+    else {
+        try {
+            var fileData = JSON.parse(data);
+            fileData = fileData.filter(function(x) { return x !== null });
+            //console.log(fileData);
+            console.log("inside try");
+            for(var i =0; i < fileData.length;i++) {
+                if(fileData[i].title==title && fileData[i].author) {
+                    console.log("inside if");
+            //delete fileData[i];
+                    fileData[i].archive="false";
+                    fileData[i].archbtn = "archive";
+            fs.writeFile(file111, JSON.stringify(fileData), function (err) {
+  if (err) return console.log(err);
+  //console.log(JSON.stringify(file));
+  console.log('writing to ' + file111);
+   });
+                }
+            //4. Write the file back out
+            
+            }
+         }
+        catch(exception) {
+            console.error(exception);
+        }
+        res.send();
+    }
+    
+});
+    
+});
+
+
+app.post('/ownerss',function(req,res) {
+     var arr=[];
+    var obj={};
+    fs.readFile(file1,(err,data)=> {
+       
+        if(err) {
+            console.error(err);
+        }
+        else{
+            try {
+                var fileData = JSON.parse(data);
+                fileData = fileData.filter(function(x) { return x !== null });
+                for(var i =0; i < fileData.length;i++) {
+                        
+                            var obj =
+                                {
+                                image:fileData[i].image,
+                                title:fileData[i].title,
+                                author:fileData[i].author,
+                                price:fileData[i].price,
+                                description:fileData[i].description,
+                                ownerId:fileData[i].ownerId,
+                                refNo:fileData[i].refNo,
+                                ISBN:fileData[i].ISBN,
+                                button:fileData[i].button,
+                                numOfPages: fileData[i].numOfPages,
+                                edit: fileData[i].edit,
+                                archbtn:fileData[i].archbtn,
+                                archive:fileData[i].archive
+                                    
+                            }
+                            
+                            arr.push(obj);
+                        }
+                        
+                    
+                    
+                    console.log(arr);
+                    arr = arr.filter(function(x) { return x !== null });
+                    const arrayData = JSON.stringify(arr);
+                    res.send(arrayData);
+                    
+                
+            }
+            catch(exception) {
+                console.log(exception);
+            }
+        }
+        
+    });
+    
+});
+
+app.post('/ownerch',function(req,res) {
+    var arr=[];
+    var obj={};
+    fs.readFile(file11,(err,data)=> {
+       
+        if(err) {
+            console.error(err);
+        }
+        else{
+            try {
+                var fileData = JSON.parse(data);
+                fileData = fileData.filter(function(x) { return x !== null });
+                for(var i =0; i < fileData.length;i++) {
+                        
+                            var obj =
+                                {
+                                image:fileData[i].image,
+                                title:fileData[i].title,
+                                author:fileData[i].author,
+                                price:fileData[i].price,
+                                description:fileData[i].description,
+                                ownerId:fileData[i].ownerId,    
+                                refNo:fileData[i].refNo,
+                                ISBN:fileData[i].ISBN,
+                                button:fileData[i].button,
+                                numOfPages: fileData[i].numOfPages,
+                                edit: fileData[i].edit,
+                                archbtn:fileData[i].archbtn,
+                                archive:fileData[i].archive
+                                    
+                            }
+                            
+                            arr.push(obj);
+                        
+                        
+                    }
+                    
+                    console.log(arr);
+                    arr = arr.filter(function(x) { return x !== null });
+                    const arrayData = JSON.stringify(arr);
+                    res.send(arrayData);
+                    
+                
+            }
+            catch(exception) {
+                console.log(exception);
+            }
+        }
+        
+    });
+    
+    
+});
+
+app.post('/ownerbi',function(req,res) {
+    var arr=[];
+    var obj={};
+    fs.readFile(file111,(err,data)=> {
+       
+        if(err) {
+            console.error(err);
+        }
+        else{
+            try {
+                var fileData = JSON.parse(data);
+                fileData = fileData.filter(function(x) { return x !== null });
+                for(var i =0; i < fileData.length;i++) {
+                        
+                            var obj =
+                                {
+                                image:fileData[i].image,
+                                title:fileData[i].title,
+                                author:fileData[i].author,
+                                price:fileData[i].price,
+                                description:fileData[i].description,
+                                ownerId:fileData[i].ownerId,    
+                                refNo:fileData[i].refNo,
+                                ISBN:fileData[i].ISBN,
+                                button:fileData[i].button,
+                                numOfPages: fileData[i].numOfPages,
+                                edit: fileData[i].edit,
+                                archbtn:fileData[i].archbtn,
+                                archive:fileData[i].archive
+                                    
+                            }
+                            
+                            arr.push(obj);
+                        
+                        
+                    }
+                    
+                    console.log(arr);
+                    arr = arr.filter(function(x) { return x !== null });
+                    const arrayData = JSON.stringify(arr);
+                    res.send(arrayData);
+                    
+                
+            }
+            catch(exception) {
+                console.log(exception);
+            }
+        }
+        
+    });
+});
+
+
 
 
     
