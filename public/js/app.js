@@ -394,6 +394,7 @@ app.controller('displayCtrl',function($scope,$http,$location,$state,$rootScope,$
         x.refund = $scope.refund;
         
 var date2 = new Date();
+        console.log("user returned date:" + date2);
 var date1 = new Date(x.date);
 var timeDiff = Math.abs(date2.getTime() - date1.getTime());
 $scope.dayDifference = Math.ceil(timeDiff / (1000 * 3600 * 24));
@@ -568,9 +569,8 @@ app.controller('catListCtrl', function($scope, $http,$location,$state,$statePara
                 $scope.ButtonText="booked";
                 $scope.dsblBtn = true;
                 $scope.flag=1;
-            $window.alert("Your booking has been confirmed");
-            //var popup = document.getElementById("myPopup");
-            //popup.classList.toggle("show");
+             $window.alert("Your booking has been confirmed");
+            
               $state.go('payment');  
             }
         
@@ -660,7 +660,12 @@ app.controller('payCtrl',function($scope,$rootScope,$http,$location,$state,$stat
 
  app.controller('ownerloginCtrl',function($scope,$rootScope,$http,$location,$state,$stateParams,$window) {
         $rootScope.ownerVar = !$rootScope.ownerVar;
-    
+          console.log("owner:"+$rootScope.owner);
+          if($rootScope.owner !="")
+              {
+                  $rootScope.ownerVar = !$rootScope.ownerVar;
+                  $state.go('ownerhome');
+              }
           $scope.login = function() {
               $rootScope.ownerVar = true;
               $http.post('/ownersignin',$scope.formData)
@@ -718,14 +723,14 @@ app.controller('ownermain',function($scope,$rootScope,$http,$location,$state,$st
     //var user = $stateParams.user;
     if($scope.owner==null) {
         console.log('Not logged in');
-        $state.go('ownerlogin');
+        $state.go('owner');
     } else {
     console.log('inside owner_main_controller ' + $scope.owner);
         
     }
     $scope.logout = function() {
         //$rootScope.ownerVar = false;
-        $rootScope.owner=null;
+        $rootScope.owner="";
         $state.go('owner');
     }
     $scope.books = function() {
@@ -773,6 +778,7 @@ app.controller('orderDisplayCtrl',function($scope,$http,$location,$state,$rootSc
                 
    //console.log("inside calc order" + x.price) ;             
 var date2 = new Date();
+console.log("owner acknowledged date:" + date2);
 var date1 = new Date(x.date);
 var timeDiff = Math.abs(date2.getTime() - date1.getTime());
 $scope.dayDifference = Math.ceil(timeDiff / (1000 * 3600 * 24));
@@ -800,6 +806,14 @@ console.log($scope.dayDifference);
             console.log('inside refund' + response.data.returnValue);
             console.log('successfully updated the refund amount');
             $window.alert("Thank you for your acknowledgement!!!. Rs. " + $scope.due + " is refunded to " + $scope.user +  ". The process is successfully completed.");
+            /*var popup = document.getElementById("myPopup");
+    popup.classList.toggle("show");
+
+    $scope.close=function(){
+        var popup = document.getElementById("myPopup");
+    popup.classList.hide("show");
+        
+    }*/
         });
             }
             
@@ -820,6 +834,7 @@ console.log($scope.dayDifference);
             console.log('inside refund' + response.data.returnValue);
             console.log('successfully updated the refund amount');
                     $window.alert("Thank you for your acknowledgement!!!. The refund amount of Rs. " + $scope.old_due + " is cancelled to " + $scope.user +  ". The process is successfully completed.");
+                    
         });
             }
         });
@@ -868,6 +883,8 @@ app.controller('userHistoryCtrl',function($scope,$http,$location,$state,$rootSco
 app.controller('myBooksCtrl',function($scope,$http,$location,$state,$rootScope,$compile,$window) {
      
      $scope.owner = $rootScope.owner;
+    //$scope.archVar = "true";
+    $scope.unarchVar ="false";
      
         $scope.object =
             {
@@ -893,7 +910,7 @@ app.controller('myBooksCtrl',function($scope,$http,$location,$state,$rootScope,$
     
    
     if($scope.owner ==="ownerid_1") {
-        $http.post('/ss',$scope.data)
+        $http.post('/ownerss',$scope.data)
             .then(function(response){
             console.log(response);
             console.log('success');
@@ -909,7 +926,7 @@ app.controller('myBooksCtrl',function($scope,$http,$location,$state,$rootScope,$
         
     }
     else if($scope.owner==="ownerid_2") {
-        $http.post('/ch',$scope.data)
+        $http.post('/ownerch',$scope.data)
             .then(function(response){
             console.log(response);
             console.log('success');
@@ -925,7 +942,7 @@ app.controller('myBooksCtrl',function($scope,$http,$location,$state,$rootScope,$
         
     }
     else if($scope.owner==="ownerid_3") {
-        $http.post('/bi',$scope.data)
+        $http.post('/ownerbi',$scope.data)
             .then(function(response){
             console.log(response);
             console.log('success');
@@ -946,31 +963,70 @@ app.controller('myBooksCtrl',function($scope,$http,$location,$state,$rootScope,$
      $scope.delete = function(x) {
          $scope.delobj = x;
          console.log("inside delete");
+         console.log("archive status:" + x.archbtn);
+         
+         //$scope.archVar = "true";
+         if(x.archbtn=="archive") 
+         {
+          x.archbtn="unarchive";     
          console.log($scope.owner);
          if($scope.owner==="ownerid_1")
              {
                $http.post('/delBook1',$scope.delobj)
         .then(function(response) {
-        console.log('successfully deleted books from the database');
-        $window.alert("successfully deleted this book from the database");
+        console.log('successfully archived books from the database');
+        $window.alert("successfully archived this book from the database");
         });  
              }
          else if($scope.owner=="ownerid_2") {
              $http.post('/delBook2',$scope.delobj)
         .then(function(response) {
-        console.log('successfully deleted books from the database');
-        $window.alert("successfully deleted this book from the database");
+        console.log('successfully archived books from the database');
+        $window.alert("successfully archived this book from the database");
         });  
              
          }
          else if($scope.owner=="ownerid_3") {
              $http.post('/delBook3',$scope.delobj)
         .then(function(response) {
-        console.log('successfully deleted books from the database');
-        $window.alert("successfully deleted this book from the database");         
+        console.log('successfully archived books from the database');
+        $window.alert("successfully archived this book from the database");         
         });  
              
          }
+         }
+         else if(x.archbtn=="unarchive") {
+             console.log("archive status" + x.archbtn);
+             x.archbtn="archive";
+             if($scope.owner==="ownerid_1")
+             {
+               $http.post('/unarchBook1',$scope.delobj)
+        .then(function(response) {
+        console.log('successfully unarchived books from the database');
+        $window.alert("successfully unarchived this book from the database");
+        });  
+             }
+         else if($scope.owner=="ownerid_2") {
+             $http.post('/unarchBook2',$scope.delobj)
+        .then(function(response) {
+        console.log('successfully unarchived books from the database');
+        $window.alert("successfully unarchived this book from the database");
+        });  
+             
+         }
+         else if($scope.owner=="ownerid_3") {
+             $http.post('/unarchBook3',$scope.delobj)
+        .then(function(response) {
+        console.log('successfully unarchived books from the database');
+        $window.alert("successfully unarchived this book from the database");         
+        });  
+             
+         }
+             
+         }
+     }
+     $scope.delete1 = function(x) {
+         $scope.unarchVar ="true";
      }
 });
              
@@ -999,7 +1055,8 @@ app.controller('myBooksCtrl',function($scope,$http,$location,$state,$rootScope,$
             ownerId:$scope.owner,
             button:"BUY",
             edit:"edit",
-            delete:"delete"
+            delete:"delete",
+            archive:"false"
     }
         console.log($scope.addobj);
         if($scope.owner==="ownerid_1") {
