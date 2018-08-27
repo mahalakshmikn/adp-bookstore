@@ -11,7 +11,8 @@ var file111 ='./json/newbook_biography.json';
 var file2 ='./json/newpurchase.json';
 var file3 = './json/ownerdata.json';
 var file4 = './json/history.json';
-var file5 = './json/addbook.json';
+var file5 = './json/new_arrival.json';
+var file6 = './json/best_seller.json';
 app.use(express.static(__dirname + '/public'));
 
 app.use(bodyParser.urlencoded({'extended':'true'}));            // parse application/x-www-form-urlencoded
@@ -276,6 +277,110 @@ app.post('/bi',function(req,res) {
     });
 });
 
+app.post('/new',function(req,res) {
+    var arr=[];
+    var obj={};
+    fs.readFile(file5,(err,data)=> {
+       
+        if(err) {
+            console.error(err);
+        }
+        else{
+            try {
+                var fileData = JSON.parse(data);
+                fileData = fileData.filter(function(x) { return x !== null });
+                for(var i =0; i < fileData.length;i++) {
+                        if(fileData[i].archive=="false") {
+                            var obj =
+                                {
+                                image:fileData[i].image,
+                                title:fileData[i].title,
+                                author:fileData[i].author,
+                                price:fileData[i].price,
+                                description:fileData[i].description,
+                                ownerId:fileData[i].ownerId,    
+                                refNo:fileData[i].refNo,
+                                ISBN:fileData[i].ISBN,
+                                button:fileData[i].button,
+                                numOfPages: fileData[i].numOfPages,
+                                edit: fileData[i].edit,
+                                archbtn:fileData[i].archbtn,
+                                archive:fileData[i].archive
+                                    
+                            }
+                            
+                            arr.push(obj);
+                        }
+                        
+                    }
+                    
+                    console.log(arr);
+                    arr = arr.filter(function(x) { return x !== null });
+                    const arrayData = JSON.stringify(arr);
+                    res.send(arrayData);
+                    
+                
+            }
+            catch(exception) {
+                console.log(exception);
+            }
+        }
+        
+    });
+});
+app.post('/getbest',function(req,res) {
+    var arr=[];
+    var obj={};
+    fs.readFile(file6,(err,data)=> {
+       
+        if(err) {
+            console.error(err);
+        }
+        else{
+            try {
+                var fileData = JSON.parse(data);
+                fileData = fileData.filter(function(x) { return x !== null });
+                for(var i =0; i < fileData.length;i++) {
+                        if(fileData[i].archive=="false") {
+                            var obj =
+                                {
+                                image:fileData[i].image,
+                                title:fileData[i].title,
+                                author:fileData[i].author,
+                                price:fileData[i].price,
+                                description:fileData[i].description,
+                                ownerId:fileData[i].ownerId,    
+                                refNo:fileData[i].refNo,
+                                ISBN:fileData[i].ISBN,
+                                button:fileData[i].button,
+                                numOfPages: fileData[i].numOfPages,
+                                edit: fileData[i].edit,
+                                archbtn:fileData[i].archbtn,
+                                archive:fileData[i].archive
+                                    
+                            }
+                            
+                            arr.push(obj);
+                        }
+                        
+                    }
+                    
+                    console.log(arr);
+                    arr = arr.filter(function(x) { return x !== null });
+                    const arrayData = JSON.stringify(arr);
+                    res.send(arrayData);
+                    
+                
+            }
+            catch(exception) {
+                console.log(exception);
+            }
+        }
+        
+    });
+});
+
+
 
 
 app.post('/pay',function(req,res) {
@@ -286,6 +391,7 @@ app.post('/pay',function(req,res) {
     var user = req.body.user;
     var owner = req.body.owner;
     var flag=0;
+    var count = 0;
     fs.readFile(file2, (err, data) => {
     if (err && err.code === "ENOENT") {
         // But the file might not yet exist.  If so, just write the object and bail
@@ -302,9 +408,11 @@ app.post('/pay',function(req,res) {
             fileData = fileData.filter(function(x) { return x !== null });
             for(var i=0;i< fileData.length; i++)
                 {
-                    
+                    if(fileData[i].title==title) {
+                        count++;
+                    }
                     if(fileData[i].title==title && fileData[i].user == user) {
-                        
+                        count++;
                         flag=1;
                         break;
                         
@@ -317,7 +425,8 @@ app.post('/pay',function(req,res) {
             fileData.push(obj);
             var msg =
             {
-                err:'success'
+                err:'success',
+                count:count
             }
                 res.send(msg);    
 
@@ -340,6 +449,252 @@ app.post('/pay',function(req,res) {
     }
 });
 });
+
+app.post('/best',function(req,res) {
+    console.log("inside best");
+    console.log(req.body);
+    var obj = req.body;
+    var title = req.body.title;
+    var user = req.body.user;
+    var owner = req.body.owner;
+    var count = req.body.count;
+    console.log("inside best:" + owner);
+    var flag=0;
+    var count = 0;
+    var arr=[];
+    if(owner==="ownerid_1")
+        {
+            fs.readFile(file1,(err,data)=> {
+       
+        if(err) {
+            console.error(err);
+        }
+        else{
+            try {
+                var fileData = JSON.parse(data);
+                fileData = fileData.filter(function(x) { return x !== null });
+                for(var i =0; i < fileData.length;i++) {
+                        if(fileData[i].title===title) {
+                            fileData[i].count = fileData[i].count+1;
+                            var best_obj =
+                                {
+                                image:fileData[i].image,
+                                title:fileData[i].title,
+                                author:fileData[i].author,
+                                price:fileData[i].price,
+                                description:fileData[i].description,
+                                ownerId:fileData[i].ownerId,
+                                refNo:fileData[i].refNo,
+                                ISBN:fileData[i].ISBN,
+                                button:fileData[i].button,
+                                numOfPages: fileData[i].numOfPages,
+                                edit: fileData[i].edit,
+                                archbtn:fileData[i].archbtn,
+                                archive:fileData[i].archive ,
+                                count:fileData[i].count
+                            }
+                            
+                           
+                        }
+                        
+                    }
+                 fs.writeFile(file1, JSON.stringify(fileData), function (err) {
+  if (err) return console.log(err);
+  //console.log(JSON.stringify(file));
+  console.log('writing to ' + file1);
+   }); 
+                    
+                    
+                   //console.log(arr);
+                    //arr = arr.filter(function(x) { return x !== null });
+                    //const arrayData = JSON.stringify(arr);
+                    res.send(best_obj);
+                    
+                
+            }
+            catch(exception) {
+                console.log(exception);
+            }
+        }
+        
+    });
+        }
+    else if(owner=="ownerid_2")
+        {
+          fs.readFile(file11,(err,data)=> {
+       
+        if(err) {
+            console.error(err);
+        }
+        else{
+            try {
+                var fileData = JSON.parse(data);
+                fileData = fileData.filter(function(x) { return x !== null });
+                for(var i =0; i < fileData.length;i++) {
+                        if(fileData[i].title===title) {
+                            fileData[i].count = fileData[i].count+1;
+                            var best_obj =
+                                {
+                                image:fileData[i].image,
+                                title:fileData[i].title,
+                                author:fileData[i].author,
+                                price:fileData[i].price,
+                                description:fileData[i].description,
+                                ownerId:fileData[i].ownerId,
+                                refNo:fileData[i].refNo,
+                                ISBN:fileData[i].ISBN,
+                                button:fileData[i].button,
+                                numOfPages: fileData[i].numOfPages,
+                                edit: fileData[i].edit,
+                                archbtn:fileData[i].archbtn,
+                                archive:fileData[i].archive,
+                                count:fileData[i].count
+                            }
+                            
+                          
+                        }
+                        
+                    }
+                     fs.writeFile(file11, JSON.stringify(fileData), function (err) {
+  if (err) return console.log(err);
+  //console.log(JSON.stringify(file));
+  console.log('writing to ' + file11);
+   }); 
+                    
+                   //console.log(arr);
+                    //arr = arr.filter(function(x) { return x !== null });
+                    //const arrayData = JSON.stringify(arr);
+                    res.send(best_obj);
+                    
+                
+            }
+            catch(exception) {
+                console.log(exception);
+            }
+        }
+        
+    });  
+        }
+    else if(owner=="ownerid_3")
+        {
+            console.log("inside else if");
+           fs.readFile(file111,(err,data)=> {
+       
+        if(err) {
+            console.error(err);
+        }
+        else{
+            try {
+                var fileData = JSON.parse(data);
+                fileData = fileData.filter(function(x) { return x !== null });
+                for(var i =0; i < fileData.length;i++) {
+                        if(fileData[i].title==title) {
+                            console.log("inside if:title matched");
+                            fileData[i].count = fileData[i].count+1;
+                            var best_obj =
+                                {
+                                image:fileData[i].image,
+                                title:fileData[i].title,
+                                author:fileData[i].author,
+                                price:fileData[i].price,
+                                description:fileData[i].description,
+                                ownerId:fileData[i].ownerId,
+                                refNo:fileData[i].refNo,
+                                ISBN:fileData[i].ISBN,
+                                button:fileData[i].button,
+                                numOfPages: fileData[i].numOfPages,
+                                edit: fileData[i].edit,
+                                archbtn:fileData[i].archbtn,
+                                archive:fileData[i].archive,
+                                count:fileData[i].count    
+                            }
+                            
+                           
+                        }
+                        
+                    }
+                fs.writeFile(file111, JSON.stringify(fileData), function (err) {
+  if (err) return console.log(err);
+  //console.log(JSON.stringify(file));
+  console.log('writing to ' + file111);
+   }); 
+                    
+                   //console.log(arr);
+                    //arr = arr.filter(function(x) { return x !== null });
+                    //const arrayData = JSON.stringify(arr);
+                    res.send(best_obj);
+                    
+                
+            }
+            catch(exception) {
+                console.log(exception);
+            }
+        }
+        
+    }); 
+        }
+});
+app.post('/addbest',function(req,res){
+
+ var best_obj = req.body;
+    var title = req.body.title;
+  var flag =0;  
+    fs.readFile(file6, (err, data) => {
+    if (err && err.code === "ENOENT") {
+        // But the file might not yet exist.  If so, just write the object and bail
+        return fs.writeFile(file6, JSON.stringify([best_obj]), error => console.error);
+    }
+    else if (err) {
+        // Some other error
+        console.error(err);
+    }    
+    // 2. Otherwise, get its JSON content
+    else {
+        try {
+            var fileData = JSON.parse(data);
+            fileData = fileData.filter(function(x) { return x !== null });
+            for(var i=0;i< fileData.length; i++)
+                {
+                    
+                    if(fileData[i].title==title) {
+                        
+                        flag=1;
+                        break;
+                        
+                    }
+                }
+
+            // 3. Append the object you want
+            console.log('flag in best' + flag);
+            if(flag==0) {
+            fileData.push(best_obj);
+            var msg =
+            {
+                err:'success',
+                
+            }
+                res.send(msg);    
+
+            //4. Write the file back out
+            return fs.writeFile(file6, JSON.stringify(fileData), error => console.error);
+            
+            }
+             
+            else {
+          var msg1 =
+            {
+                err:'failure'
+            }
+        res.send(msg1);
+    }
+    
+        } catch(exception) {
+            console.error(exception);
+        }
+    }
+});
+});
+
 
 app.post('/book',function(req,res) {
     
@@ -926,14 +1281,64 @@ app.post('/getuserHistory',function(req,res) {
 
 
 app.post('/addBook1',function(req,res) {
-    
+    console.log("inside addbook1");
     console.log(req.body);
   
     
     var obj = req.body;
+    obj['image']="images/new_arrival.jpg";
     var title = req.body.title;
     var author = req.body.author;
     var flag =0;
+    
+    fs.readFile(file5, (err, data) => {
+    if (err && err.code === "ENOENT") {
+        
+        return fs.writeFile(file5, JSON.stringify([obj]), error => console.error);
+    }
+    else if (err) {
+        
+        console.error(err);
+    }    
+    
+    else {
+        try {
+            var fileData = JSON.parse(data);
+            fileData = fileData.filter(function(x) { return x !== null });
+            for(var i =0; i < fileData.length;i++) {
+                if(fileData[i].title===title && fileData[i].author===author) {
+                    flag =1;
+                    break;
+                }
+                    
+            }
+            //console.log(fileData);
+            /*anthology = JSON.parse(anthology);*/
+            if(flag ==1) {
+                var msgobj = {
+                    name:"failure"
+                }
+                res.send(msgobj);
+            }
+            else {
+            fileData.push(obj);
+                var msgobj = {
+                    name:"success"
+                }
+            res.send(msgobj);
+            //4. Write the file back out
+            return fs.writeFile(file5, JSON.stringify(fileData), error => console.error);
+            }
+            }
+         catch(exception) {
+            console.error(exception);
+        }
+       
+    }
+    
+});
+    
+    
     fs.readFile(file1, (err, data) => {
     if (err && err.code === "ENOENT") {
         
@@ -981,14 +1386,66 @@ app.post('/addBook1',function(req,res) {
     
 });
     
+    
 });
 
 app.post('/addBook2',function(req,res) {
-    
+    console.log("inside addbook2");
     console.log(req.body);
-  
+  var title = req.body.title;
+    var author = req.body.author;
+    var flag =0;
     
     var obj = req.body;
+    obj['image']="images/new_arrival.jpg";
+    
+    fs.readFile(file5, (err, data) => {
+    if (err && err.code === "ENOENT") {
+        
+        return fs.writeFile(file5, JSON.stringify([obj]), error => console.error);
+    }
+    else if (err) {
+        
+        console.error(err);
+    }    
+    
+    else {
+        try {
+            var fileData = JSON.parse(data);
+            fileData = fileData.filter(function(x) { return x !== null });
+            for(var i =0; i < fileData.length;i++) {
+                if(fileData[i].title===title && fileData[i].author===author) {
+                    flag =1;
+                    break;
+                }
+                    
+            }
+            //console.log(fileData);
+            /*anthology = JSON.parse(anthology);*/
+            if(flag ==1) {
+                var msgobj = {
+                    name:"failure"
+                }
+                res.send(msgobj);
+            }
+            else {
+            fileData.push(obj);
+                var msgobj = {
+                    name:"success"
+                }
+            res.send(msgobj);
+            //4. Write the file back out
+            return fs.writeFile(file5, JSON.stringify(fileData), error => console.error);
+            }
+            }
+         catch(exception) {
+            console.error(exception);
+        }
+       
+    }
+    
+});
+    
     fs.readFile(file11, (err, data) => {
     if (err && err.code === "ENOENT") {
         
@@ -1044,9 +1501,60 @@ app.post('/addBook2',function(req,res) {
 app.post('/addBook3',function(req,res) {
     
     console.log(req.body);
-  
+  var title = req.body.title;
+    var author = req.body.author;
+    var flag =0;
     
     var obj = req.body;
+    obj['image']="images/new_arrival.jpg";
+    
+    fs.readFile(file5, (err, data) => {
+    if (err && err.code === "ENOENT") {
+        
+        return fs.writeFile(file5, JSON.stringify([obj]), error => console.error);
+    }
+    else if (err) {
+        
+        console.error(err);
+    }    
+    
+    else {
+        try {
+            var fileData = JSON.parse(data);
+            fileData = fileData.filter(function(x) { return x !== null });
+            for(var i =0; i < fileData.length;i++) {
+                if(fileData[i].title===title && fileData[i].author===author) {
+                    flag =1;
+                    break;
+                }
+                    
+            }
+            //console.log(fileData);
+            /*anthology = JSON.parse(anthology);*/
+            if(flag ==1) {
+                var msgobj = {
+                    name:"failure"
+                }
+                res.send(msgobj);
+            }
+            else {
+            fileData.push(obj);
+                var msgobj = {
+                    name:"success"
+                }
+            res.send(msgobj);
+            //4. Write the file back out
+            return fs.writeFile(file5, JSON.stringify(fileData), error => console.error);
+            }
+            }
+         catch(exception) {
+            console.error(exception);
+        }
+       
+    }
+    
+});
+    
     fs.readFile(file111, (err, data) => {
     if (err && err.code === "ENOENT") {
         
