@@ -17,12 +17,17 @@
         </div>
         <div id="menu1" class="col12">
             <ul id="list_menu1">
-                <li> <a ng-hide="ownerVar"  ui-sref="home">HOME</a></li>
+                <li> <a  ng-hide="ownerVar"  ui-sref="home">HOME</a></li>
                 <li> <a ng-hide="ownerVar"  ui-sref="categories">CATEGORIES</a></li>
                 <li>  <a ng-hide="ownerVar"  ui-sref="how">HOW IT WORKS</a></li>
                 <li> <a ng-hide="ownerVar"  ui-sref="contact">CONTACT US</a></li>
                 <li><a ng-hide="ownerVar"  ui-sref="about">ABOUT</a></li>
+                <li><a ng-hide="ownerVar"  ui-sref="myAccount">MY ACCOUNT</a></li>
+                <li><a ng-hide="ownerVar"  ui-sref="userHistory">MY HISTORY</a></li>
                 <li><a ui-sref="owner">OWNER</a></li>
+                <li><a ui-sref="myBooks" ng-show="ownerVar"> BOOKS</a></li>
+                <li><a ui-sref="myOrders" ng-show="ownerVar">ORDERS</a></li>
+                <li><a ui-sref="myHistory" ng-show="ownerVar">HISTORY</a></li>
             </ul>
         </div>
             
