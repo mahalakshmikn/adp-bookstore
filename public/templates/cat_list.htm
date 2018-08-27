@@ -1,56 +1,52 @@
 <html>
     <head>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <style>
              input[type=text], input[type=password], input[type=date] {
   /*width: 100%;*/
   padding: 10px 32px;
   margin: 5px 0 22px 0;
   display: inline-block;
-  border: none;
-  background: #ffb366;
+  border:2px solid #ff6666;
+  
 }
 
 input[type=text]:focus, input[type=password]:focus,input[type=date]:focus {
-  background-color: #ff9900;
+  background-color: white;
+  
   outline: none;
 }
         </style>
     </head>
     <body>
 <div class="col12">
-<div id="catTable" class="col333">
+<div id="cat_btn1" class="col3">
+ <input type="text" placeholder="&#x1F50D; Type the title..." id="myInput" ng-keyup="myFunction()" ng-model="input" class="fontAwesome">
+
 <table id="cat_table" style="width:100%">
   <tr>
     <th>Categories</th>
     </tr>
   <tr>
-      <td id="cat_btn1"><input class="cat_btn"  type="button" ng-click="getSs()" value="Short Stories" ng-model="data"></td>
+      <td id="cat_btn1"><a href="" class="cat_btn" ng-click="getSs()"  ng-model="data">Short Stories</a></td>
   </tr>
   <tr>
-    <td id="cat_btn1"><input class="cat_btn" type="button" ng-click="getCh()" value="Children Books" ng-model="data"></td>
+      <td id="cat_btn1"><a href="" class="cat_btn" ng-click="getCh()"  ng-model="data">Children Books</a></td>
   </tr>
   <tr>
-    <td><input class="cat_btn" type="button" ng-click="getBi()" value="Biography" ng-model="data"></td>
+    <td><a href="" class="cat_btn" ng-click="getBi()"  ng-model="data">Biography</a></td>
   </tr>
-  <!--<tr>
-    <td><input class="cat_btn" type="button" ng-click="getSs()" value="History" ng-model="data"></td>
-  </tr>
-  <tr>
-    <td><input class="cat_btn" type="button" ng-click="getSs()" value="Horror" ng-model="data"></td>
-  </tr>
-  <tr>
-    <td><input class="cat_btn" type="button" ng-click="getSs()" value="Fiction" ng-model="data"></td>
-  </tr>    
-  <tr>
-    <td><input class="cat_btn" type="button" ng-click="getSs()" value="Romance" ng-model="data"></td>
-  </tr> 
-  <tr>
-    <td><input class="cat_btn" type="button" ng-click="getSs()" value="Philosophy" ng-model="data"></td>
-  </tr> !-->    
-</table>
+  </table>
+    <hr id="cat_hr">
+    
+    <a href="" id="arr_btn" ng-click="getNew()"  ng-model="data">New Arrivals</a>
+    <hr id="cat_hr">
+    <a href="" id="arr_btn" ng-click="getBest()"  ng-model="data">Best Sellers</a>
+    <hr id="cat_hr">
 </div>
 <div  class="col9" id="cat">
-<div ng-hide ="payVar">   
+<div ng-hide ="payVar"> 
+    <div id="booklist">
 <div ng-hide="myVar" id="box" class="col3" ng-repeat="x in shortstory">
           <img id="simage" src={{x.image}}>
           <p id="title">{{x.title}}</p>
@@ -58,6 +54,7 @@ input[type=text]:focus, input[type=password]:focus,input[type=date]:focus {
           <!--<a ui-sref="catviews">Buy</a>!-->
           <input id="readMore" type="button" value="Read More" ng-click="addToCart(x)" ng-model="myVar">
         </div>
+    </div>
 <div ng-show="myVar" id="catview">
     <img id="simages">
     <p>Title: <span class="details" id="titles"  ng-model="titles"></span></p>
@@ -67,11 +64,40 @@ input[type=text]:focus, input[type=password]:focus,input[type=date]:focus {
     <p>ISBN: <span id ="isbn" class="details" ></span></p>
     <p>Number Of Pages: <span id ="pages" class="details" ></span></p><br><br>
     <p>Price: <span id ="price" class="details" ></span></p><br><br>
-    <button id="bookConfirm" ng-value="booking" type="button"  ng-disabled=dsblBtn ng-click="makePayment()">Booking confirm</button>
     
+    <button  id="bookConfirm" type="button"  ng-click="makePayment()">Booking confirm
+    
+    </button>
 </div>    
 </div>   
 </div>
  </div>
-    </body>
+<div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close" ng-click="close()">&times;</span>
+    <p>Your payment has been successful.Track your order in My Account</p>
+  </div>
+</div>
+<div id="myModal2" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content2">
+    <span class="close" ng-click="close1()">&times;</span>
+    <p>OOPS!!! Your payment has been cancelled.</p>
+  </div>
+</div>
+        
+<div id="myModal3" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content2">
+    <span class="close" ng-click="close2()">&times;</span>
+    <p>OOPS!!! You have already taken this book. Please take another one.</p>
+  </div>
+</div>        
+
+ 
+</body>
 </html>
