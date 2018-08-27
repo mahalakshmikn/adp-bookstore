@@ -2,7 +2,8 @@ body
             {
                 max-width:100%;
                 max-height:100%;
-                background-color:#ff9900
+                background-color:#ff6666;
+                
             }
 
 #container
@@ -34,7 +35,7 @@ body
 {
     padding:0px;
     margin-right:2%;
-    background-color:#ff9900;
+    background-color:#ff6666;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
 }
@@ -58,7 +59,7 @@ body
 #list_menu1  li a
 {
     display: block;
-    color: black;
+    color: white;
     text-align: center;
     padding: 2px 10px;
     text-decoration: none;
@@ -101,7 +102,7 @@ body
 {
     padding:0px;
     margin-right:2%;
-    background-color:#ff9900;
+    background-color:#ff6666;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
     margin-bottom:1%;
@@ -139,7 +140,7 @@ body
 #maincontent
 {
     height:50%;
-    margin-top:-20px;
+    margin-top:-60px;
 }
  .col3
            {
@@ -174,10 +175,10 @@ hr
     padding:14px 40px;
     margin-right:20px;
     margin-top:-25px;
-    background-color:#cc0066;
+    background-color:#ff6666;
     border:1px solid #cc0066;
     font-size: :14px;
-    
+    color:white;
     
 }
 #welcome
@@ -194,9 +195,10 @@ hr
 #cat
 {
     float:left;
-    border:2px solid #ff9900;
+    border:2px solid #ff6666;
     border-top-width:5px;
     border-radius:5px;
+
     
 }
 #catTable {
@@ -211,7 +213,7 @@ hr
         padding-right:10px;
         margin-left:2%;
         margin-right:2%;
-        margin-bottom:10px;  
+          
         
     }
 #cat table,th,td
@@ -261,17 +263,27 @@ hr
     margin-top:1%;    
         
     }
-.col9{
+/*.col9{
         float:left;
         width:71%;
         height:900px;
         margin-left:25%;
         margin-right:2%;
         margin-bottom:10px;
-        margin-top:-50px; 
+        margin-top:-40px; 
         padding:0px;
         
         
+    }*/
+.col9{
+        float:left;
+        width:71%;
+        height:900px;
+        margin-left:1%;
+        margin-right:1%;
+        margin-bottom:1%;
+        margin-top:1%; 
+        padding:0px;
     }
 
 #simages
@@ -300,47 +312,70 @@ table,tr,th,td
 #readMore {
     padding:5px 10px;
     margin-left:30px;
-    background-color:#ff9900;
-    border:1px solid #ff9900;
+    background-color:#ff471a;
+    border:1px solid red;
     border-radius:5px;
+    color:white;
 }
+#regood {
+    padding:5px 10px;
+    margin-left:30px;
+    background-color:green;
+    border:1px solid red;
+    border-radius:5px;
+    color:white;
+}
+#rebad {
+    padding:5px 10px;
+    margin-left:30px;
+    background-color:orangered;
+    border:1px solid red;
+    border-radius:5px;
+    color:white;
+}
+
+
 
 .cat_btn {
     padding-left:5px 70px;
-    font-size:14px;
+    font-size:16px;
     background-color:white;
     border-style:none;
     font-weight:bold;
-    color:gray;
+    color:black;
+    text-decoration: none;
 }
 
 
 .cat_btn:focus {
-    background-color:#ff9900;
+    background-color:#ff6666;
+    color:white;
 }
 #bookConfirm {
     padding:14px 40px;
     margin-left:10px;
-    background-color:#cc0066;
-    border:1px solid #ff9900;
+    background-color:#ff6666;
+    border:1px solid red;
     font-size: :14px;
-    
+    color:white;
 }
 
 #addbooks {
     padding:14px 40px;
     margin-left:10px;
-    background-color:#ffa366;
-    border:1px solid #ffa366;
+    background-color:gray;
+    border:1px solid black;
+    color:white
     font-size: :14px;
     
 }
 #bookCancel {
     padding:14px 40px;
     margin-left:10px;
-    background-color:red;
-    border:1px solid #ff9900;
+    background-color:gray;
+    border:1px solid black;
     font-size: :14px;
+    color:white;
     
 }
 #pay_btn {
@@ -369,7 +404,7 @@ table,tr,th,td
     padding:14px 40px;
     margin-left:10px;
     background-color:orangered;
-    border:1px solid #ff9900;
+    border:1px solid #ff6666;
     font-size: :14px;
     
 }
@@ -378,7 +413,7 @@ table,tr,th,td
     padding:14px 40px;
     margin-left:10px;
     background-color:orange;
-    border:1px solid #ff9900;
+    border:1px solid #ff6666;
     font-size: :14px;
     
 }
@@ -387,7 +422,7 @@ table,tr,th,td
     padding:0px;
 }
 #purchase tr:nth-child(even) {
-    background-color:#ffc266;
+    background-color:#ff9999;
     
     
 }
@@ -397,7 +432,7 @@ table,tr,th,td
 }
 #main_title {
     font-family: myFirstFont;
-    color:#993333;
+    color:red;
 }
 #address {
     
@@ -421,16 +456,52 @@ table,tr,th,td
 #cvctext {
     
 }
+#addtitle {
+    margin-left:80px;
+}
+#addauth {
+    margin-left:70px;
+}
+#addprice {
+    margin-left:80px;
+}
+#add_desc {
+    margin-left:45px;
+}
+#addisbn {
+    margin-left:85px;
+}
+#addpgno {
+    margin-left:10px;
+}
 #containers {
 margin-top:150px;
  margin-left:400px;
 margin-right:400px;
 margin-bottom:150px;                
   padding: 16px;
- border:2px solid #ff9900;
+ border:2px solid #ff6666;
 border-radius:5px;
-background-color:#ffe6cc;
+background-color:white;
 }
+#logincontainers {
+height:300px;
+margin-top:40px;
+margin-bottom:40px;
+border:2px solid #ff6666;
+border-radius:5px;
+background-color:white;
+}
+#paycontainers {
+height:400px;
+margin-top:40px;
+margin-bottom:40px;
+border:2px solid #ff6666;
+border-radius:5px;
+background-color:white;
+}
+
+
 #account {
     height:600px;
 }
@@ -500,13 +571,117 @@ margin-bottom:150px;
   color: orange;
 }
 
-/* Add animation (fade in the popup) */
-@-webkit-keyframes fadeIn {
-    from {opacity: 0;} 
-    to {opacity: 1;}
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
 }
 
-@keyframes fadeIn {
-    from {opacity: 0;}
-    to {opacity:1 ;}
+/* Modal Content */
+.modal-content2 {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 2px solid red;
+    border-radius:5px;
+    width: 40%;
+    height:15%;
+    background-color: white;
+    color:red;
+}
+.modal-content{
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 2px solid green;
+    border-radius:5px;
+    width: 40%;
+    height:15%;
+    background-color: white;
+    color:green;
+}
+/* The Close Button */
+.close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+@-webkit-keyframes slideIn {
+    from {bottom: -300px; opacity: 0} 
+    to {bottom: 0; opacity: 1}
+}
+
+@-webkit-keyframes slideIn {
+    from {bottom: -300px; opacity: 0}
+    to {bottom: 0; opacity: 1}
+}
+
+@-webkit-keyframes fadeIn {
+    from {opacity: 0} 
+    to {opacity: 1}
+}
+
+@-webkit-keyframes fadeIn {
+    from {opacity: 0} 
+    to {opacity: 1}
+}
+#ownermain {
+    margin-bottom:10px;
+}
+#ad1 {
+    border:1px solid #ff6666;
+    margin-top:40px; 
+    margin-bottom:40px;
+    background-image:url(./images/adbook1.jpg);
+}
+#ad2 {
+    border:1px solid #ff6666;
+    margin-top:40px; 
+    margin-bottom:40px;
+    background-image:url(./images/adbook2.jpg);
+}
+.col6{
+        float:left;
+        width:46%;
+        
+        margin-left:2%;
+        margin-right:2%;
+        margin-bottom:1%; 
+        margin-top:1%;
+    }
+#cat_hr {
+    width:100%;
+    margin-top:20px;
+    margin-bottom:20px;
+    background-color:#ff6666;
+    margin-right:2%;
+    border:2px solid #ff6666;
+}
+#arr_btn {
+    padding-left:5px 70px;
+    font-size:16px;
+    color:black;
+    border-style:none;
+    font-weight:bold;
+    text-decoration:none;
+}
+#arr_btn:focus {
+    background-color:#ff6666;
+    color:white;
 }
