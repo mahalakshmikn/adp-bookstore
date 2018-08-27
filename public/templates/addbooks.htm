@@ -8,12 +8,12 @@
   padding: 10px 32px;
   margin: 5px 0 22px 0;
   display: inline-block;
-  border: none;
-  background: #ffb366;
+  border: 2px solid #ff6666;
+  
 }
 
 input[type=text]:focus, input[type=password]:focus,input[type=date]:focus {
-  background-color: #ff9900;
+  background-color: gainsboro;
   outline: none;
 }
         </style>
@@ -27,28 +27,30 @@ input[type=text]:focus, input[type=password]:focus,input[type=date]:focus {
         <form name="mform" id ="myform1" ng-submit="add()">
             
             <label class="details" for="newtitle"><b>Title</b></label>
-            <input type="text" name="newtitle" ng-model="formData.newtitle" placeholder="Title" required><br><br>
+            <input id="addtitle" type="text" name="newtitle" ng-model="formData.newtitle" placeholder="Title" required><br><br>
            
             <label class="details" for="newauthor"><b>Author</b></label>
-            <input type="text" name ="newauthor" ng-model="formData.newauthor" placeholder="Author" required><br><br>
+            <input id="addauth" type="text" name ="newauthor" ng-model="formData.newauthor" placeholder="Author" required><br><br>
             
             <label class="details" for ="newprice"><b>Price</b>
-            </label><input type="text" name ="newprice" ng-model="formData.newprice" placeholder="Price" required><br><br>
+            </label><input id="addprice" type="text" name ="newprice" ng-model="formData.newprice" placeholder="Price" required><br><br>
             
             <label class="details" for="newdesc"><b>Description</b></label>
-            <input type="text" name="newdesc" ng-model="formData.newdesc" placeholder="Description" required><br><br>
+            <input id="add_desc" type="text" name="newdesc" ng-model="formData.newdesc" placeholder="Description" required><br><br>
             
             <label class="details" for="newref"><b>Reference Number</b></label>
             <input  type="text" ng-model="formData.newref" placeholder="Reference Number" required><br><br>
             
             <label class="details" for="newisbn"><b>ISBN</b></label>
-            <input  type="text" ng-model="formData.newisbn" placeholder="ISBN" required><br><br>
+            <input id="addisbn"  type="text" ng-model="formData.newisbn" placeholder="ISBN" required><br><br>
             
             <label class="details" for="phone"><b>Number of pages</b></label>
-            <input  type="text" ng-model="formData.newpageno" placeholder="Total pages" required><br><br>
+            <input id="addpgno"  type="text" ng-model="formData.newpageno" placeholder="Total pages" required><br><br>
             
-            
+            <span>
             <input id="bookConfirm" type ="submit" value="ADD BOOK">
+             <input id="bookCancel" type ="submit" value="Cancel" ng-click="bookCancel()">
+                </span>
         </form>
         </div>
             
